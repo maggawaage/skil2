@@ -672,7 +672,6 @@ void ConsoleUI::searchComputer()
     }
 }
 
-<<<<<<< HEAD
 void ConsoleUI::deleteFromFileComputer()
 {
     vector<Computer> Computers;
@@ -694,8 +693,6 @@ void ConsoleUI::deleteFromFileComputer()
     //displayVector(Computers);
 }
 
-=======
->>>>>>> 95ee7ac302143045fd0a983bfd38ac00153c5d31
 void ConsoleUI::deleteFromFilePerson()
 {
     vector<Person> Persons;
@@ -717,33 +714,7 @@ void ConsoleUI::deleteFromFilePerson()
     displayVector(Persons);
 }
 
-<<<<<<< HEAD
 void ConsoleUI::editPerson()
-=======
-void ConsoleUI::deleteFromFileComputer()
-{
-    vector<Computer> Computers;
-    Computers = _service.serviceToVector(Computers);
-    int id;
-    displayVector(Computers, 1);
-
-    cout << "\nEnter the ID of the person you want to delete: ";
-    while(!(cin >> id))
-    {
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout << "Enter only corresponding numbers: ";
-    }
-
-    Computers.erase (Computers.begin()+id-1);
-
-    _service.serviceToFile(Computers);
-    displayVector(Computers);
-}
-
-
-void ConsoleUI::edit()
->>>>>>> 95ee7ac302143045fd0a983bfd38ac00153c5d31
 {
     string newName;
     int newYear;
