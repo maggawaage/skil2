@@ -1,0 +1,3 @@
+This is the location of our "Skilaverkefni 1" in GitHub
+
+https://github.com/maggawaage/skil1
