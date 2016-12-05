@@ -11,7 +11,9 @@ public:
 
     void run();
     void writePerson();
-    void sortIt();
+    void writeComputer();
+    void sortItPerson();
+    void sortItComputer();
     void search();
     void deleteFromFile();
     void edit();

@@ -41,17 +41,41 @@ void ConsoleUI::run()
         switch(choice)
         {
         case 1:
-            /*
-            cout << "Do you want to add a person or a computer?\n"
+            cout << "Do you want to add a person or a computer?\n";
             cout << "\t1. Add person  \n";
             cout << "\t2. Add computer \n";
-            cin >> choice
-            switch(choice)
-            */
-            writePerson();
-            break;
+            cout << "Your choice: ";
+            int writeChoice;
+            cin >> writeChoice;
+            switch(writeChoice)
+            {
+            case 1:
+                writePerson();
+                break;
+            case 2:
+                writeComputer();
+                break;
+            default:
+                 cout<<"\tInvalid entry!"<<endl;
+            }
         case 2:
-            sortIt();
+            cout << "Do you want to print out a list of person or a computer?\n";
+            cout << "\t1. Print out person  \n";
+            cout << "\t2. Print out computer \n";
+            cout << "Your choice: ";
+            int sortItChoice;
+            cin >> sortItChoice;
+            switch(sortItChoice)
+            {
+            case 1:
+                sortItPerson();
+                break;
+            case 2:
+                sortItComputer();
+                break;
+            default:
+                 cout<<"\tInvalid entry!"<<endl;
+            }
             break;
         case 3:
             search();
@@ -70,6 +94,47 @@ void ConsoleUI::run()
         }
     }
     while(true);
+}
+
+void ConsoleUI::writeComputer()
+{
+    string name;
+    string type;
+    int buildYear;
+
+    //getting valid name,type and buildYear
+    cout << "Name(English characters only): ";
+    cin.ignore(10000,'\n');
+    getline(cin, name);
+
+    cout << "Type of computer";
+    cin.ignore(10000,'\n');
+    getline(cin, type);
+
+    cout << "Build year (if it was not built enter 0): ";
+    while(!(cin>>buildYear))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter build year only in numbers(YYYY): ";
+    }
+
+    //Nýtt DA
+    /*
+    //check if name is already in file if not move to file
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    Person PER;
+    PersonService PS;
+    if(PER.checkIfSame(Persons, name))
+    {
+        PS.serviceToFile(name, type, buildYear);
+    }
+    else
+    {
+        cout << "\nError: This name has already been added.\n";
+    }
+    */
 }
 
 void ConsoleUI::writePerson()
@@ -127,7 +192,95 @@ void ConsoleUI::writePerson()
     }
 }
 
-void ConsoleUI::sortIt()
+//Laga ad computer
+void ConsoleUI::sortItComputer()
+{
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    int choice = 0;
+    cout << "How would you like to sort?" << endl;
+    cout << "\t1. By name  \n";
+    cout << "\t2. By gender \n";
+    cout << "\t3. By birthyear \n";
+    cout << "\t4. By year of death \n";
+    cout << endl;
+    cout << "Your choice: ";
+    cin >> choice;
+
+    switch(choice)
+    {
+    case 1: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceAlpha;
+        cin >> choiceAlpha;
+        switch(choiceAlpha)
+        {
+        case 2:
+            _service.reAlpha(Persons);
+            break;
+        default: // if 1 or something other
+            _service.alpha(Persons);
+        }
+        break;
+    case 2: //sorts by witch gender first and alphabetically
+        cout << "\t1. First female  \n";
+        cout << "\t2. First male \n";
+        cout << "Your choice(default: ";
+        int choiceGender;
+        cin >> choiceGender;
+        switch(choiceGender)
+        {
+        case 2:
+            _service.alpha(Persons);
+            _service.reGender(Persons);
+            break;
+        default: // if 1 or something other
+            _service.alpha(Persons);
+            _service.gender(Persons);
+        }
+        break;
+    case 3:
+        cout << "\t1. From highest to lowest.  \n";
+        cout << "\t2. From lowest to highest. \n";
+        cout << "Your choice: ";
+        int choiceBirthYear;
+        cin >> choiceBirthYear;
+        switch(choiceBirthYear)
+        {
+        case 2:
+            _service.alpha(Persons);
+            _service.year(Persons);
+            break;
+        default: // if 1 or something other
+            _service.alpha(Persons);
+            _service.reYear(Persons);
+            break;
+        }
+        break;
+    case 4:
+        cout << "\t1. From highest to lowest. \n";
+        cout << "\t2. From lowest to highest.\n";
+        cout << "Your choice: ";
+        int choiceDeathYear;
+        cin >> choiceDeathYear;
+        switch(choiceDeathYear)
+        {
+        case 2:
+            _service.alpha(Persons);
+            _service.death(Persons);
+            break;
+        default: // if 1 or something other
+            _service.alpha(Persons);
+            _service.reDeath(Persons);
+        }
+        break;
+    }
+    displayVector(Persons);
+}
+
+void ConsoleUI::sortItPerson()
 {
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
