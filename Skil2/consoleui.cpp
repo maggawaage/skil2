@@ -41,7 +41,14 @@ void ConsoleUI::run()
         switch(choice)
         {
         case 1:
-            write();
+            /*
+            cout << "Do you want to add a person or a computer?\n"
+            cout << "\t1. Add person  \n";
+            cout << "\t2. Add computer \n";
+            cin >> choice
+            switch(choice)
+            */
+            writePerson();
             break;
         case 2:
             sortIt();
@@ -65,7 +72,7 @@ void ConsoleUI::run()
     while(true);
 }
 
-void ConsoleUI::write()
+void ConsoleUI::writePerson()
 {
     string name;
     char gender;

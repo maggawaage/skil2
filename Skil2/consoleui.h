@@ -10,7 +10,7 @@ public:
     ConsoleUI();
 
     void run();
-    void write();
+    void writePerson();
     void sortIt();
     void search();
     void deleteFromFile();
