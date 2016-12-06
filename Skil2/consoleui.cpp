@@ -198,9 +198,12 @@ void ConsoleUI::writePerson()
     int deathYear;
 
     //getting valid name,gender,birthYear and deathYear
-    cout << "Name(English characters only): ";
-    cin.ignore(10000,'\n');
-    getline(cin, name);
+    while (name.empty())
+    {
+        cout << "Name(English characters only): ";
+        cin.ignore(10000,'\n');
+        getline(cin, name);
+    }
     cout << "If male enter m. If female enter f:  ";
     while(!(cin>>gender) | !((gender == 'm')|(gender == 'M') | (gender == 'f') | (gender == 'F')))
     {
@@ -759,8 +762,12 @@ void ConsoleUI::editPerson()
     {
     case 1:
         cout << "Enter new name: ";
-        cin.ignore(10000,'\n');
-        getline(cin, newName);
+        while (newName.empty())
+        {
+            cout << "Name(English characters only): ";
+            cin.ignore(10000,'\n');
+            getline(cin, newName);
+        }
         if (PER.checkIfSame(Persons, newName))
         {
             Persons.at(id-1).setName(newName);
