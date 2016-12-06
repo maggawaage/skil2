@@ -7,8 +7,9 @@ using namespace std ;
 
 int main()
 {
-    ConsoleUI ui;
+    Database database;
 
+    ConsoleUI ui;
     ui.run();
 
     return 0;

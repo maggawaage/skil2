@@ -3,7 +3,22 @@
 
 DataAccess::DataAccess()
 {
+    _runningDB = QSqlDatabase::database();
+}
 
+void DataAccess::testSQLcommand()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("select Name, Gender, BirthYear, DeathYear from Person;");
+
+    while (query.next())
+    {
+        QString name = query.value(0).toString();
+        QString gender = query.value(1).toString();
+        QString birthYear = query.value(2).toString();
+        QString deathYear = query.value(3).toString();
+        qDebug() << name << gender << birthYear << deathYear;
+    }
 }
 
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
