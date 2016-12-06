@@ -24,6 +24,7 @@ public:
     void teamLogo();
 private:
     PersonService _service;
+    Person PER;
 };
 
 #endif // CONSOLEUI_H
