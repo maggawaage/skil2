@@ -30,6 +30,7 @@ public:
     static vector<Person> SearchDeathYear(vector<Person> list, int deathYear);
 
     vector<Person> deleteDublicateVector(vector<Person> Persons);
+    void add(string name, char gender, int birthYear, int deathYear);
 
 private:
     vector<Person> alpha();

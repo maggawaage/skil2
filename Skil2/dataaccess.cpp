@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include "dataaccess.h"
 
 DataAccess::DataAccess()
@@ -6,53 +7,76 @@ DataAccess::DataAccess()
     _runningDB = QSqlDatabase::database();
 }
 
-void DataAccess::testSQLcommand()
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.exec("select Name, Gender, BirthYear, DeathYear from Person;");
-
-    while (query.next())
-    {
-        QString name = query.value(0).toString();
-        QString gender = query.value(1).toString();
-        QString birthYear = query.value(2).toString();
-        QString deathYear = query.value(3).toString();
-        qDebug() << name << gender << birthYear << deathYear;
-    }
-}
-
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 {
-    fstream inputFile("person.txt");
-    string name;
-    char gender;
-    int birthYear;
-    int deathYear;
-    string trash;
-
-    if (inputFile.is_open())
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT name, gender, birthYear, deathYear FROM person;");
+    query.exec();
+    while (query.next())
     {
-        while(inputFile >> trash)
-        {
-            Person temp;
-            getline(inputFile, name);
-            name=name.substr(1);
-            temp.setName(name);
-            inputFile >> gender;
-            temp.setGender(gender);
-            inputFile >> birthYear;
-            temp.setBirthYear(birthYear);
-            inputFile >> deathYear;
-            temp.setDeathYear(deathYear);
-            if(!inputFile.eof() )
-            {
-                famousComputerphiles.push_back(temp);
-            }
-        }
+    Person temp;
+    QString name = query.value(0).toString();
+    temp.setName(name.toStdString());
+    QString gender = query.value(1).toString();
+    temp.setGender(gender.toDouble());
+    QString birthYear = query.value(2).toString();
+    temp.setBirthYear(birthYear.toInt());
+    QString deathYear = query.value(3).toString();
+    temp.setDeathYear(deathYear.toInt());
+    famousComputerphiles.push_back(temp);
     }
-    inputFile.close();
     return famousComputerphiles;
 }
+
+vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("select name, type, year of build;");
+    while (query.next())
+    {
+        Computer temp;
+        QString name = query.value(0).toString();
+        temp.setName(name.toStdString());
+        QString type = query.value(1).toString();
+        temp.setType(type.toStdString());
+        QString buildYear = query.value(2).toString();
+        temp.setBuildYear(buildYear.toInt());
+        famousComputers.push_back(temp);
+    }
+    return famousComputers;
+}
+
+void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    //INSERT INTO Person (Name, Gender, BirthYear, DeathYear) VALUES ("GD", "Male", 1989, 0);
+    query.prepare("INSERT INTO Person (Name, Gender, BirthYear, DeathYear) "
+                                "VALUES (?, ?, ?, ?)");
+
+    query.addBindValue(QString::fromStdString(name));
+    query.addBindValue(gender);
+    query.addBindValue(birthYear);
+    query.addBindValue(deathYear);
+    if(query.exec())
+    {
+        cout << "Success" << endl;
+    }
+    else
+    {
+        cout << " Failed " << endl;
+    }
+}
+
+void DataAccess::addComputer(string name, string type, int buildYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO person (name, type, buildYear) VALUES(:iName, :iType, :iBuildYear);");
+    query.bindValue(":iName", QString::fromStdString(name));
+    query.bindValue(":iType", QString::fromStdString(type));
+    query.bindValue(":iBuildYear", buildYear);
+    query.exec();
+}
+
 
 void DataAccess::writeToFile(string name, char gender, int birthYear, int deathYear)
 {

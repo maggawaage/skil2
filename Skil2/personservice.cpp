@@ -138,3 +138,8 @@ vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
         }
         return Persons;
 }
+
+void PersonService::add(string name, char gender, int birthYear, int deathYear)
+{
+    access.addPerson(name, gender, birthYear, deathYear);
+}
