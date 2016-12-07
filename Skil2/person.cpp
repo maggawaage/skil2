@@ -4,14 +4,19 @@ Person::Person()
 {
 
 }
-Person::Person(string name, int birthYear, char gender, int deathYear)
+Person::Person(int id, string name, int birthYear, char gender, int deathYear)
 {
+   _id = id;
    _name = name;
    _birthYear = birthYear;
    _gender = gender;
    _deathYear = deathYear;
 }
 
+int Person::getID() const
+{
+    return _id;
+}
 string Person::getName() const
 {
     return _name;

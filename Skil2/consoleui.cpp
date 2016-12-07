@@ -5,7 +5,6 @@
 #include "consoleui.h"
 #include "person.h"
 #include "computer.h"
-#include "dataaccess.h"
 
 using namespace std;
 
@@ -57,8 +56,10 @@ void ConsoleUI::run()
                 writeComputer();
                 break;
             default:
+                 system("cls");
                  cout<<"\tInvalid entry!"<<endl;
             }
+            break;
         case 2:
             cout << "Do you want to print out a list of person or a computer?\n";
             cout << "\t1. Print out person  \n";
@@ -75,13 +76,14 @@ void ConsoleUI::run()
                 sortItComputer();
                 break;
             default:
+                 system("cls");
                  cout<<"\tInvalid entry!"<<endl;
             }
             break;
         case 3:
-            cout << "Do you want to delete out a list of person or a computer?\n";
-            cout << "\t1. Print out person  \n";
-            cout << "\t2. Print out computer \n";
+            cout << "Do you want to search for a person or a computer?\n";
+            cout << "\t1. Search person  \n";
+            cout << "\t2. Search computer \n";
             cout << "Your choice: ";
             int searchChoice;
             cin >> searchChoice;
@@ -94,12 +96,14 @@ void ConsoleUI::run()
                 searchComputer();
                 break;
             default:
+                 system("cls");
                  cout<<"\tInvalid entry!"<<endl;
             }
+            break;
         case 4:
             cout << "Do you want to delete out a list of person or a computer?\n";
-            cout << "\t1. Print out person  \n";
-            cout << "\t2. Print out computer \n";
+            cout << "\t1. Delete person  \n";
+            cout << "\t2. Delete computer \n";
             cout << "Your choice: ";
             int deleteFromFileChoice;
             cin >> deleteFromFileChoice;
@@ -112,12 +116,14 @@ void ConsoleUI::run()
                 deleteFromFileComputer();
                 break;
             default:
+                 system("cls");
                  cout<<"\tInvalid entry!"<<endl;
             }
+            break;
         case 5:
-                cout << "Do you want to print out a list of person or a computer?\n";
-                cout << "\t1. Print out person  \n";
-                cout << "\t2. Print out computer \n";
+                cout << "Do you want to edit a person or a computer?\n";
+                cout << "\t1. Edit person  \n";
+                cout << "\t2. Edit computer \n";
                 cout << "Your choice: ";
                 int editChoice;
                 cin >> editChoice;
@@ -130,8 +136,10 @@ void ConsoleUI::run()
                     editComputer();
                     break;
                 default:
+                     system("cls");
                      cout<<"\tInvalid entry!"<<endl;
                 }
+                break;
         case 6:
             exit(0);
             break;
@@ -170,11 +178,10 @@ void ConsoleUI::writeComputer()
     //check if name is already in file if not move to file
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
-    Person PER;
-    PersonService PS;
+
     if(PER.checkIfSame(Persons, name))
     {
-        PS.serviceToFile(name, type, buildYear);
+        _service.serviceToFile(name, type, buildYear);
     }
     else
     {
@@ -191,9 +198,12 @@ void ConsoleUI::writePerson()
     int deathYear;
 
     //getting valid name,gender,birthYear and deathYear
-    cout << "Name(English characters only): ";
-    cin.ignore(10000,'\n');
-    getline(cin, name);
+    while (name.empty())
+    {
+        cout << "Name(English characters only): ";
+        cin.ignore(10000,'\n');
+        getline(cin, name);
+    }
     cout << "If male enter m. If female enter f:  ";
     while(!(cin>>gender) | !((gender == 'm')|(gender == 'M') | (gender == 'f') | (gender == 'F')))
     {
@@ -227,13 +237,14 @@ void ConsoleUI::writePerson()
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
     Person PER;
-    PersonService PS;
     if(PER.checkIfSame(Persons, name))
     {
-        PS.serviceToFile(name, gender, birthYear, deathYear);
+        _service.serviceToFile(name, gender, birthYear, deathYear);
+        system("cls");
     }
     else
     {
+        system("cls");
         cout << "\nError: This name has already been added.\n";
     }
 }
@@ -410,12 +421,12 @@ void ConsoleUI::sortItPerson()
         }
         break;
     }
+    system("cls");
     displayVector(Persons);
 }
 
 void ConsoleUI::searchPerson()
 {
-    PersonService PA;
     vector<Person> SearchPersons;
 
     char keepSearching = 'y';
@@ -456,8 +467,8 @@ void ConsoleUI::searchPerson()
             {
                 string nameForSearch;
                 cout << "What name do you want to search for? ";
-
-                SearchPersons = PA.SearchName(SearchPersons, nameForSearch);
+                getline(cin, nameForSearch);
+                SearchPersons = _service.SearchName(SearchPersons, nameForSearch);
             }
             //search by gender
             else if ((conditionNum == 2) & (conditionAvailable[1] == 0) )
@@ -470,7 +481,7 @@ void ConsoleUI::searchPerson()
                     cin.ignore(10000,'\n');
                     cout << "Enter only m/M for male or f/F for femaler: ";
                 }
-                SearchPersons = PA.SearchGender(SearchPersons, genderForSearch);
+                SearchPersons = _service.SearchGender(SearchPersons, genderForSearch);
             }
             //search by birth year
             else if ((conditionNum == 3) & (conditionAvailable[2] == 0))
@@ -483,7 +494,7 @@ void ConsoleUI::searchPerson()
                     cin.ignore(10000,'\n');
                     cout << "Enter birth year only in numbers(YYYY): ";
                 }
-                SearchPersons = PA.SearchBirthYear(SearchPersons, birthYearForSearch);
+                SearchPersons = _service.SearchBirthYear(SearchPersons, birthYearForSearch);
             }
             //search by death year
             else if ((conditionNum == 4) & (conditionAvailable[3] == 0))
@@ -496,12 +507,12 @@ void ConsoleUI::searchPerson()
                     cin.ignore(10000,'\n');
                     cout << "Enter death year only in numbers(YYYY):  ";
                 }
-                SearchPersons = PA.SearchDeathYear(SearchPersons, deathYearForSearch);
+                SearchPersons = _service.SearchDeathYear(SearchPersons, deathYearForSearch);
             }
             //search by alive
             else if ((conditionNum == 5) & (conditionAvailable[3] == 0))
             {
-                SearchPersons = PA.SearchDeathYear(SearchPersons, 0);
+                SearchPersons = _service.SearchDeathYear(SearchPersons, 0);
             }
 
             conditionAvailable[conditionNum-1] = 1;
@@ -517,15 +528,17 @@ void ConsoleUI::searchPerson()
             cout << " \n";
         }
 
-        PA.deleteDublicateVector(SearchPersons);
+        _service.deleteDublicateVector(SearchPersons);
 
 
         if (SearchPersons.size() == 0)
         {
+            system("cls");
             cout << "No person matches this search \n";
         }
         else
         {
+            system("cls");
             cout << "Displaying search results: \n";
             displayVector(SearchPersons);
         }
@@ -586,7 +599,7 @@ void ConsoleUI::searchComputer()
             {
                 string nameForSearch;
                 cout << "What name do you want to search for? ";
-
+                getline(cin, nameForSearch);
                 SearchPersons = PA.SearchName(SearchPersons, nameForSearch);
             }
             //search by gender
@@ -711,6 +724,7 @@ void ConsoleUI::deleteFromFilePerson()
     Persons.erase (Persons.begin()+id-1);
 
     _service.serviceToFile(Persons);
+    system("cls");
     displayVector(Persons);
 }
 
@@ -748,9 +762,21 @@ void ConsoleUI::editPerson()
     {
     case 1:
         cout << "Enter new name: ";
-        cin.ignore(10000,'\n');
-        getline(cin, newName);
-        Persons.at(id-1).setName(newName);
+        while (newName.empty())
+        {
+            cout << "Name(English characters only): ";
+            cin.ignore(10000,'\n');
+            getline(cin, newName);
+        }
+        if (PER.checkIfSame(Persons, newName))
+        {
+            Persons.at(id-1).setName(newName);
+        }
+        else
+        {
+            system("cls");
+            cout << "This name has already been added. Nothing was edited\n";
+        }
         break;
     case 2:
         if((Persons.at(id-1).getGender())==male)
@@ -771,20 +797,43 @@ void ConsoleUI::editPerson()
             cout << "Enter year only in numbers(YYYY): ";
         }
         Persons.at(id-1).setBirthYear(newYear);
+        break;        while(!(cin>>newYear))
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout << "Enter year only in numbers(YYYY): ";
+        }
+        if ( (newYear <= Persons.at(id-1).getDeathYear()) )
+        {
+        Persons.at(id-1).setBirthYear(newYear);
+        }
+        else
+        {
+            system("cls");
+            cout << "You cannot die before you are born. Nothing was edited\n";
+        }
         break;
     case 4:
-        cout << "Enter new year: ";
+        cout << "Enter new year (if not dead enter 0): ";
         while(!(cin>>newYear))
         {
             cin.clear();
             cin.ignore(10000,'\n');
             cout << "Enter year only in numbers(YYYY): ";
         }
+        if ( (newYear >= Persons.at(id-1).getBirthYear()) | (newYear==0) )
+        {
         Persons.at(id-1).setDeathYear(newYear);
+        }
+        else
+        {
+            system("cls");
+            cout << "You cannot die before you are born. Nothing was edited\n";
+        }
         break;
     default:
     {
-        cout<<"\tInvalid entry!"<<endl;
+        cout<<"\tInvalid entry!"<< endl;
     }
 
     }

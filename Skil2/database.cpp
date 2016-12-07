@@ -4,7 +4,7 @@
 Database::Database()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbName = "Persons.sqlite"; //eg thurfti ad nota full path til ad fa thetta til ad virka
+    QString dbName = "Database.sqlite"; //eg thurfti ad nota full path til ad fa thetta til ad virka
     _db.setDatabaseName(dbName);
     _db.open();
 }
