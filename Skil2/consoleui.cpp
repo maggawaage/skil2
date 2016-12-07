@@ -23,7 +23,7 @@ void ConsoleUI::run()
     {
         cout << endl;
         cout << "Please choose from the following commands: \n";
-        cout << "\t1. Add person  \n";
+        cout << "\t1. Add to list \n";
         cout << "\t2. Print list(sort) \n";
         cout << "\t3. Search list\n";
         cout << "\t4. Delete from list\n";
@@ -154,40 +154,44 @@ void ConsoleUI::writeComputer()
 {
     string name;
     string type;
-    int buildYear;
+    int birthYear;
 
-    //getting valid name,type and buildYear
-    cout << "Name(English characters only): ";
-    cin.ignore(10000,'\n');
-    getline(cin, name);
+    while (name.empty())
+    {
+        cout << "Name(English characters only): ";
+        getline(cin, name);
+    }
+    //getline 2svar ????
+    while (type.empty())
+    {
+        cout << "Type(English characters only): ";
+        getline(cin, type);
+    }
 
-    cout << "Type of computer";
-    cin.ignore(10000,'\n');
-    getline(cin, type);
-
-    cout << "Build year (if it was not built enter 0): ";
-    while(!(cin>>buildYear))
+    cout << "Build year(If not built enter 0): ";
+    while(!(cin>>birthYear))
     {
         cin.clear();
         cin.ignore(10000,'\n');
-        cout << "Enter build year only in numbers(YYYY): ";
+        cout << "Enter birth year only in numbers(YYYY): ";
     }
 
-    //Nýtt DA
-    /*
+
     //check if name is already in file if not move to file
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
-
+    Person PER;
     if(PER.checkIfSame(Persons, name))
     {
-        _service.serviceToFile(name, type, buildYear);
+       // _service.add(name, gender, birthYear, deathYear);
+        system("cls");
+        cout << "\nAdded the computer\n";
     }
     else
     {
+        system("cls");
         cout << "\nError: This name has already been added.\n";
     }
-    */
 }
 
 void ConsoleUI::writePerson()
@@ -239,8 +243,9 @@ void ConsoleUI::writePerson()
     Person PER;
     if(PER.checkIfSame(Persons, name))
     {
-        _service.serviceToFile(name, gender, birthYear, deathYear);
+        _service.add(name, gender, birthYear, deathYear);
         system("cls");
+        cout << "\nAdded the person\n";
     }
     else
     {
