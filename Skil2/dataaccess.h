@@ -9,18 +9,19 @@ class DataAccess
 {
 public:
     DataAccess();
-    //void writeToFile(string name, char gender, int birthYear, int deathYear);
-    //void writeVectorToFile(vector<Person>famousComputerphiles);
-    //vector<Person> fillVector(vector<Person>famousComputerphiles);
+    void writeToFile(string name, char gender, int birthYear, int deathYear);
+    void writeVectorToFile(vector<Person>famousComputerphiles);
+    vector<Person> fillVector(vector<Person>famousComputerphiles);
     void testSQLcommand();
-    vector<Person> alpha();
-    vector<Person> reAlpha();
-    vector<Person> year();
-    vector<Person> reYear();
-    vector<Person> gender();
-    vector<Person> reGender();
-    vector<Person> death();
-    vector<Person> reDeath();
+    vector<Person> parseLine(QSqlQuery& line);
+    vector<Person> DataAlpha();
+    vector<Person> DataReAlpha();
+    vector<Person> DataYear();
+    vector<Person> DataReYear();
+    vector<Person> DataGender();
+    vector<Person> DataReGender();
+    vector<Person> DataDeath();
+    vector<Person> DataReDeath();
 
 private:
     QSqlDatabase _runningDB;

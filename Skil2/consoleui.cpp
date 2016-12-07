@@ -278,7 +278,7 @@ void ConsoleUI::sortItComputer()
             _service.reAlpha(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            _service.Alpha();
         }
         break;
     case 2: //sorts by witch gender first and alphabetically
@@ -290,11 +290,13 @@ void ConsoleUI::sortItComputer()
         switch(choiceGender)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reGender(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.gender(Persons);
         }
         break;
@@ -307,11 +309,13 @@ void ConsoleUI::sortItComputer()
         switch(choiceBirthYear)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.year(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reYear(Persons);
             break;
         }
@@ -325,11 +329,13 @@ void ConsoleUI::sortItComputer()
         switch(choiceDeathYear)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.death(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reDeath(Persons);
         }
         break;
@@ -362,10 +368,12 @@ void ConsoleUI::sortItPerson()
         switch(choiceAlpha)
         {
         case 2:
-            _service.reAlpha(Persons);
+            //_service.reAlpha(Persons);
+            _service.Alpha();
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
         }
         break;
     case 2: //sorts by witch gender first and alphabetically
@@ -377,11 +385,13 @@ void ConsoleUI::sortItPerson()
         switch(choiceGender)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reGender(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.gender(Persons);
         }
         break;
@@ -394,11 +404,13 @@ void ConsoleUI::sortItPerson()
         switch(choiceBirthYear)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.year(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reYear(Persons);
             break;
         }
@@ -412,11 +424,13 @@ void ConsoleUI::sortItPerson()
         switch(choiceDeathYear)
         {
         case 2:
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.death(Persons);
             break;
         default: // if 1 or something other
-            _service.alpha(Persons);
+            //_service.alpha(Persons);
+            _service.Alpha();
             _service.reDeath(Persons);
         }
         break;

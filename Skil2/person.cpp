@@ -4,9 +4,9 @@ Person::Person()
 {
 
 }
-Person::Person(int id, string name, int birthYear, char gender, int deathYear)
+Person::Person(string name, int birthYear, char gender, int deathYear)
 {
-   _id = id;
+   //_id = id;
    _name = name;
    _birthYear = birthYear;
    _gender = gender;
@@ -33,7 +33,6 @@ int Person::getDeathYear() const
 {
     return _deathYear;
 }
-
 void Person::setName(string name)
 {
     _name = name;
@@ -50,7 +49,6 @@ void Person::setDeathYear(int deathYear)
 {
      _deathYear = deathYear;
 }
-
 bool Person::compareName(Person a, Person b)
 {
     return a._name < b._name;

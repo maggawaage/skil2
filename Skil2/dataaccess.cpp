@@ -1,5 +1,6 @@
 #include <fstream>
 #include "dataaccess.h"
+#include "person.h"
 
 DataAccess::DataAccess()
 {
@@ -20,41 +21,69 @@ void DataAccess::testSQLcommand()
         qDebug() << name << gender << birthYear << deathYear;
     }
 }
-vector<Person> DataAccess::alpha()
+vector<Person> DataAccess::parseLine(QSqlQuery& line)
 {
-    _query.exec("SELECT * FROM Persons ORDER BY Name ASC");
+    QSqlQuery query = QSqlQuery(_runningDB);
+    vector<Person> readToVec;
+    while(line.next()){
+        string name = query.value("Name").toString().toStdString();
+        char gender = query.value("Gender").toString().toStdString()[0];
+        int birthYear = query.value("BirthYear").toUInt();
+        int deathYear = query.value("DeathYear").toUInt();
+        Person _person(name, gender, birthYear, deathYear);
+        readToVec.push_back(Person(name, gender, birthYear, deathYear));
+    }
+    return readToVec;
 }
-vector<Person> DataAccess::reAlpha()
+vector<Person> DataAccess::DataAlpha()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("SELECT * FROM Persons ORDER BY Name ASC");
+    return parseLine(query);
+}
+vector<Person> DataAccess::DataReAlpha()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY Name DESC");
+    return parseLine(query);
 }
 
-vector<Person> DataAccess::year()
+vector<Person> DataAccess::DataYear()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY BirthYear ASC");
+    return parseLine(query);
 }
-vector<Person> DataAccess::reYear()
+vector<Person> DataAccess::DataReYear()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
    _query.exec("SELECT * FROM Persons ORDER BY BirthYear DESC");
+   return parseLine(query);
 }
-vector<Person> DataAccess::gender()
+vector<Person> DataAccess::DataGender()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY Gender ASC");
+    return parseLine(query);
 }
-vector<Person> DataAccess::reGender()
+vector<Person> DataAccess::DataReGender()
 {
-    _query.exec("SELECT * FROM Persons ORDER BY Gener DESC");
+    QSqlQuery query = QSqlQuery(_runningDB);
+    _query.exec("SELECT * FROM Persons ORDER BY Gender DESC");
+    return parseLine(query);
 }
-
-vector<Person> DataAccess::death()
+vector<Person> DataAccess::DataDeath()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY DeathYear ASC");
+    return parseLine(query);
 }
-vector<Person> DataAccess::reDeath()
+vector<Person> DataAccess::DataReDeath()
 {
+    QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY DeathYear DESC");
+    return parseLine(query);
 }
-/*
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 {
     fstream inputFile("person.txt");
@@ -133,4 +162,3 @@ void DataAccess::writeVectorToFile(vector<Person>famousComputerphiles)
         famousPersons.close();
     }
 }
-*/

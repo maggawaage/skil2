@@ -11,7 +11,7 @@ class PersonService
 public:
     PersonService();
 
-    vector<Person> alpha(vector<Person>& personlist);
+    vector<Person> Alpha();
     vector<Person> reAlpha(vector<Person>& personlist);
     vector<Person> year(vector<Person>& personlist);
     vector<Person> reYear(vector<Person>& personlist);
@@ -32,8 +32,8 @@ public:
     vector<Person> deleteDublicateVector(vector<Person> Persons);
 
 private:
-    vector<Person> alpha();
-    DataAccess access;
+    //vector<Person> alpha();
+    DataAccess _access;
 
 };
 

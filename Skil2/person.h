@@ -9,7 +9,8 @@ class Person
 {
 public:
     Person();
-    Person(int id, string name, int birthYear, char gender,  int deathYear);
+    //Person(int id, string name, int birthYear, char gender,  int deathYear);
+    Person(string name, int birthYear, char gender,  int deathYear);
 
     int getID() const;
     string getName() const;
@@ -21,6 +22,7 @@ public:
     void setGender(char gender);
     void setBirthYear(int birthYear);
     void setDeathYear(int deathYear);
+
 
     static bool compareName(Person a, Person b);
     static bool  compareNameReversed(Person a, Person b);
