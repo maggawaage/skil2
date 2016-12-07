@@ -209,11 +209,11 @@ void ConsoleUI::writePerson()
         getline(cin, name);
     }
     cout << "If male enter m. If female enter f:  ";
-    while(!(cin>>gender) | !((gender == 'm')|(gender == 'M') | (gender == 'f') | (gender == 'F')))
+    while(!(cin>>gender) | !((gender == 'm')| (gender == 'f') ))
     {
         cin.clear();
         cin.ignore(10000,'\n');
-        cout << "Enter only m/M for male or f/F for femaler: ";
+        cout << "Enter only m for male or f for femaler: ";
     }
 
     cout << "Birth year: ";

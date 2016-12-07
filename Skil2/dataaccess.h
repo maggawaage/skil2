@@ -16,7 +16,7 @@ public:
     vector<Computer> fillVector(vector<Computer>famousComputers);
     void addPerson(string name, char gender, int birthYear, int deathYear);
     void addComputer(string name, string type, int buildYear);
-    void testSQLcommand();
+
     vector<Person> parseLine(QSqlQuery& line);
     vector<Person> DataAlpha();
     vector<Person> DataReAlpha();

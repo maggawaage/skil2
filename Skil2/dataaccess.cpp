@@ -46,6 +46,86 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
     }
     return famousComputers;
 }
+
+void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    //INSERT INTO Person (Name, Gender, BirthYear, DeathYear) VALUES ("GD", "Male", 1989, 0);
+    query.prepare("INSERT INTO Person (Name, Gender, BirthYear, DeathYear) "
+                                "VALUES (?, ?, ?, ?)");
+
+    query.addBindValue(QString::fromStdString(name));
+    query.addBindValue(gender);
+    query.addBindValue(birthYear);
+    query.addBindValue(deathYear);
+    if(query.exec())
+    {
+        cout << "Success" << endl;
+    }
+    else
+    {
+        cout << " Failed " << endl;
+    }
+}
+
+void DataAccess::addComputer(string name, string type, int buildYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO person (name, type, buildYear) VALUES(:iName, :iType, :iBuildYear);");
+    query.bindValue(":iName", QString::fromStdString(name));
+    query.bindValue(":iType", QString::fromStdString(type));
+    query.bindValue(":iBuildYear", buildYear);
+    query.exec();
+}
+
+void DataAccess::writeToFile(string name, char gender, int birthYear, int deathYear)
+{
+    ofstream famousPersons ("person.txt", ios_base::app);
+    if (famousPersons.is_open())
+    {
+        famousPersons << "\n* " << name;
+        famousPersons << "\n";
+        famousPersons <<gender;
+        famousPersons << "\n";
+        famousPersons <<birthYear;
+        famousPersons << "\n";
+        famousPersons <<deathYear;
+        famousPersons << "\n";
+        famousPersons.close();
+    }
+}
+
+void DataAccess::writeVectorToFile(vector<Person>famousComputerphiles)
+{
+    string name;
+    char gender;
+    int birthYear;
+    int deathYear;
+    ofstream famousPersons ("person.txt");
+    if (famousPersons.is_open())
+    {
+        for(size_t i = 0; i < famousComputerphiles.size() ; i++ )
+        {
+            famousPersons << "* ";
+            name = famousComputerphiles.at(i).getName();
+            famousPersons << name;
+            famousPersons << "\n";
+            gender = famousComputerphiles.at(i).getGender();
+            famousPersons << gender;
+            famousPersons << "\n";
+            birthYear = famousComputerphiles.at(i).getBirthYear();
+            famousPersons << birthYear;
+            famousPersons << "\n";
+            deathYear = famousComputerphiles.at(i).getDeathYear();
+            famousPersons << deathYear;
+            famousPersons << "\n";
+        }
+        famousPersons.close();
+    }
+}
+
+
+
 vector<Person> DataAccess::parseLine(QSqlQuery& line)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -108,83 +188,4 @@ vector<Person> DataAccess::DataReDeath()
     QSqlQuery query = QSqlQuery(_runningDB);
     _query.exec("SELECT * FROM Persons ORDER BY DeathYear DESC");
     return parseLine(query);
-}
-
-void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
-
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    //INSERT INTO Person (Name, Gender, BirthYear, DeathYear) VALUES ("GD", "Male", 1989, 0);
-    query.prepare("INSERT INTO Person (Name, Gender, BirthYear, DeathYear) "
-                                "VALUES (?, ?, ?, ?)");
-
-    query.addBindValue(QString::fromStdString(name));
-    query.addBindValue(gender);
-    query.addBindValue(birthYear);
-    query.addBindValue(deathYear);
-    if(query.exec())
-    {
-        cout << "Success" << endl;
-    }
-    else
-    {
-        cout << " Failed " << endl;
-    }
-}
-
-void DataAccess::addComputer(string name, string type, int buildYear)
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("INSERT INTO person (name, type, buildYear) VALUES(:iName, :iType, :iBuildYear);");
-    query.bindValue(":iName", QString::fromStdString(name));
-    query.bindValue(":iType", QString::fromStdString(type));
-    query.bindValue(":iBuildYear", buildYear);
-    query.exec();
-}
-
-
-void DataAccess::writeToFile(string name, char gender, int birthYear, int deathYear)
-{
-    ofstream famousPersons ("person.txt", ios_base::app);
-    if (famousPersons.is_open())
-    {
-        famousPersons << "\n* " << name;
-        famousPersons << "\n";
-        famousPersons <<gender;
-        famousPersons << "\n";
-        famousPersons <<birthYear;
-        famousPersons << "\n";
-        famousPersons <<deathYear;
-        famousPersons << "\n";
-        famousPersons.close();
-    }
-}
-
-void DataAccess::writeVectorToFile(vector<Person>famousComputerphiles)
-{
-    string name;
-    char gender;
-    int birthYear;
-    int deathYear;
-    ofstream famousPersons ("person.txt");
-    if (famousPersons.is_open())
-    {
-        for(size_t i = 0; i < famousComputerphiles.size() ; i++ )
-        {
-            famousPersons << "* ";
-            name = famousComputerphiles.at(i).getName();
-            famousPersons << name;
-            famousPersons << "\n";
-            gender = famousComputerphiles.at(i).getGender();
-            famousPersons << gender;
-            famousPersons << "\n";
-            birthYear = famousComputerphiles.at(i).getBirthYear();
-            famousPersons << birthYear;
-            famousPersons << "\n";
-            deathYear = famousComputerphiles.at(i).getDeathYear();
-            famousPersons << deathYear;
-            famousPersons << "\n";
-        }
-        famousPersons.close();
-    }
 }
