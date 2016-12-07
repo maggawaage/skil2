@@ -13,3 +13,4 @@ void Database::quit()
 {
     _db.close();
 }
+

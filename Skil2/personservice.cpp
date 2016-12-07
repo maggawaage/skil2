@@ -110,7 +110,7 @@ vector<Person> PersonService::SearchDeathYear(vector<Person> list, int searchDea
 
     return newList;
 }
-
+/*
 vector<Person> PersonService::serviceToVector(vector<Person> person)
 {
     return access.fillVector(person);
@@ -138,3 +138,4 @@ vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
         }
         return Persons;
 }
+*/

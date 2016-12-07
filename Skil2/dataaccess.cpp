@@ -20,7 +20,41 @@ void DataAccess::testSQLcommand()
         qDebug() << name << gender << birthYear << deathYear;
     }
 }
+vector<Person> DataAccess::alpha()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY Name ASC");
+}
+vector<Person> DataAccess::reAlpha()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY Name DESC");
+}
 
+vector<Person> DataAccess::year()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY BirthYear ASC");
+}
+vector<Person> DataAccess::reYear()
+{
+   _query.exec("SELECT * FROM Persons ORDER BY BirthYear DESC");
+}
+vector<Person> DataAccess::gender()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY Gender ASC");
+}
+vector<Person> DataAccess::reGender()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY Gener DESC");
+}
+
+vector<Person> DataAccess::death()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY DeathYear ASC");
+}
+vector<Person> DataAccess::reDeath()
+{
+    _query.exec("SELECT * FROM Persons ORDER BY DeathYear DESC");
+}
+/*
 vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
 {
     fstream inputFile("person.txt");
@@ -99,3 +133,4 @@ void DataAccess::writeVectorToFile(vector<Person>famousComputerphiles)
         famousPersons.close();
     }
 }
+*/
