@@ -12,43 +12,36 @@ vector<Person> PersonService::Alpha()
 {
     return _access.DataAlpha();
 }
-vector<Person> PersonService::reAlpha(vector<Person>& personlist)
+vector<Person> PersonService::reAlpha()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareNameReversed);
-    return personlist;
+    return _access.DataReAlpha();
 }
 
-vector<Person> PersonService::year(vector<Person>& personlist)
+vector<Person> PersonService::year()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareYear);
-    return personlist;
+    return _access.DataYear();
 }
-vector<Person> PersonService::reYear(vector<Person>& personlist)
+vector<Person> PersonService::reYear()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareYearReversed);
-    return personlist;
+    return _access.DataReYear();
 }
 
-vector<Person> PersonService::gender(vector<Person>& personlist)
+vector<Person> PersonService::gender()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareGender);
-    return personlist;
+    return _access.DataGender();
 }
-vector<Person> PersonService::reGender(vector<Person>& personlist)
+vector<Person> PersonService::reGender()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareGenderReversed);
-    return personlist;
+    return _access.DataReGender();
 }
 
-vector<Person> PersonService::death(vector<Person>& personlist)
+vector<Person> PersonService::death()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareDeath);
-    return personlist;
+    return _access.DataDeath();
 }
-vector<Person> PersonService::reDeath(vector<Person>& personlist)
+vector<Person> PersonService::reDeath()
 {
-    sort(personlist.begin(), personlist.end(), Person::compareDeathReversed);
-    return personlist;
+    return _access.DataReDeath();
 }
 
 vector<Person> PersonService::SearchName(vector <Person> list, string searchName)

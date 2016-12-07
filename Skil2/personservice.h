@@ -12,13 +12,13 @@ public:
     PersonService();
 
     vector<Person> Alpha();
-    vector<Person> reAlpha(vector<Person>& personlist);
-    vector<Person> year(vector<Person>& personlist);
-    vector<Person> reYear(vector<Person>& personlist);
-    vector<Person> gender(vector<Person>& personlist);
-    vector<Person> reGender(vector<Person>& personlist);
-    vector<Person> death(vector<Person>& personlist);
-    vector<Person> reDeath(vector<Person>& personlist);
+    vector<Person> reAlpha();
+    vector<Person> year();
+    vector<Person> reYear();
+    vector<Person> gender();
+    vector<Person> reGender();
+    vector<Person> death();
+    vector<Person> reDeath();
 
     vector<Person> serviceToVector(vector<Person> person);
     void serviceToFile(string name, char gender, int birthYear, int deathYear);
