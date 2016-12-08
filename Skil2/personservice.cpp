@@ -138,23 +138,27 @@ void PersonService::add(string name, char gender, int birthYear, int deathYear)
     _access.addPerson(name, gender, birthYear, deathYear);
 }
 
-void PersonService::editName(int id, string name)
+void PersonService::editName(string trueName, string name)
 {
-    _access.editName(id, name);
+    _access.editName(trueName, name);
 }
 
-void PersonService::editGender(int id, char gender)
+void PersonService::editGender(string trueName, char gender)
 {
-    _access.editGender(id, gender);
+    _access.editGender(trueName, gender);
 }
 
-void PersonService::editBirthYear(int id, int birthYear)
+void PersonService::editBirthYear(string trueName, int birthYear)
 {
-    _access.editBirthYear(id, birthYear);
+    _access.editBirthYear(trueName, birthYear);
 }
 
-void PersonService::editDeathYear(int id, int deathYear)
+void PersonService::editDeathYear(string trueName, int deathYear)
 {
-    _access.editDeathYear(id, deathYear);
+    _access.editDeathYear(trueName, deathYear);
 }
 
+void PersonService::deletePerson(string trueName)
+{
+    _access.deletePerson(trueName);
+}

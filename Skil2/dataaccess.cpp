@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iostream>
 #include "dataaccess.h"
 #include "person.h"
 
@@ -165,43 +166,50 @@ vector<Person> DataAccess::DataReDeath()
     return parseLine(query);
 }
 
-void DataAccess::editName(int id, string name)
+void DataAccess::editName(string trueName, string name)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET Name = :name WHERE ID = :id;");
+    query.prepare("UPDATE Persons SET Name = :name WHERE ID = Name = :Name;");
 
     query.bindValue(":name", QString::fromStdString(name));
-        query.bindValue(":id", id);
-        query.exec();
+    query.bindValue(":Name",QString::fromStdString(trueName));
+    query.exec();
 }
 
-void DataAccess::editGender(int id, char gender)
+void DataAccess::editGender(string trueName, char gender)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET Gender = :gender WHERE ID = :id;");
+    query.prepare("UPDATE Persons SET Gender = :gender WHERE Name = :Name;");
         query.bindValue(":gender",gender);
-        query.bindValue(":id", id);
+        query.bindValue(":Name", QString::fromStdString(trueName));
         query.exec();
 }
 
-void DataAccess::editBirthYear(int id, int birthYear)
+void DataAccess::editBirthYear(string trueName, int birthYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET BirthYear = :birthYear WHERE ID = :id;");
+    query.prepare("UPDATE Persons SET BirthYear = :birthYear WHERE Name = :Name;");
         query.bindValue(":birthYear",birthYear);
-        query.bindValue(":id", id);
+        query.bindValue(":Name", QString::fromStdString(trueName));
         query.exec();
 }
 
-void DataAccess::editDeathYear(int id, int deathYear)
+void DataAccess::editDeathYear(string trueName, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET DeathYear = :birthYear WHERE ID = :id;");
+    query.prepare("UPDATE Persons SET DeathYear = :birthYear WHERE Name = :Name;");
         query.bindValue(":DeathYear",deathYear);
-        query.bindValue(":id", id);
+        query.bindValue(":Name", QString::fromStdString(trueName));
         query.exec();
 }
 
+void DataAccess::deletePerson(string trueName)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM Persons WHERE Name = :Name;");
+    query.bindValue(":Name", QString::fromStdString(trueName));
+    query.exec();
+}
 
 //--------- For computer
 

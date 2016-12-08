@@ -729,20 +729,22 @@ void ConsoleUI::deleteFromFilePerson()
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
     int id;
+    string trueName;
     displayVector(Persons, 1);
 
     cout << "\nEnter the ID of the person you want to delete: ";
-    while(!(cin >> id))
+    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding numbers: ";
     }
 
-    Persons.erase (Persons.begin()+id-1);
-
-    _service.serviceToFile(Persons);
-    system("cls");
+    trueName = Persons.at(id-1).getName();
+    _service.deletePerson(trueName);
+    Persons.clear();
+    Persons = _service.serviceToVector(Persons);
+    //system("cls");
     displayVector(Persons);
 }
 
@@ -754,6 +756,7 @@ void ConsoleUI::editPerson()
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
     int id;
+    string trueName;
     //couts vector with ID
     displayVector( Persons, 1 );
 
@@ -764,6 +767,9 @@ void ConsoleUI::editPerson()
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding id: ";
     }
+
+    trueName = Persons.at(id-1).getName();
+
     cout << "What do you want to edit?\n "
          <<"\t 1. Name \n"
         <<"\t 2. Gender \n"
@@ -791,7 +797,7 @@ void ConsoleUI::editPerson()
         }
         if (PER.checkIfSame(Persons, newName))
         {
-            _service.editName(id, newName);
+            _service.editName(trueName, newName);
         }
         else
         {
@@ -807,7 +813,7 @@ void ConsoleUI::editPerson()
             cin.ignore(10000,'\n');
             cout << "Enter only m for male or f for female: ";
         }
-             _service.editGender(id, newGender);
+             _service.editGender(trueName, newGender);
         break;
     case 3:
         cout << "Enter new year: ";
@@ -819,7 +825,7 @@ void ConsoleUI::editPerson()
         }
         if ( (newYear > Persons.at(id-1).getDeathYear()) | (Persons.at(id-1).getDeathYear() == 0) )
         {
-         _service.editBirthYear(id, newYear);
+         _service.editBirthYear(trueName, newYear);
         }
         else
         {
@@ -837,7 +843,7 @@ void ConsoleUI::editPerson()
         }
         if ( (newYear > Persons.at(id-1).getDeathYear()) | ( newYear == 0 ) )
         {
-         _service.editDeathYear(id, newYear);
+         _service.editDeathYear(trueName, newYear);
         }
         else
         {
