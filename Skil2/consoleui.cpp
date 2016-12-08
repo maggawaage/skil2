@@ -350,7 +350,7 @@ void ConsoleUI::sortItComputer()
 void ConsoleUI::sortItPerson()
 {
     vector<Person> Persons;
-    Persons = _service.serviceToVector(Persons);
+    //Persons = _service.serviceToVector(Persons);
     int choice = 0;
     cout << "How would you like to sort?" << endl;
     cout << "\t1. By name  \n";
@@ -373,14 +373,14 @@ void ConsoleUI::sortItPerson()
         {
         case 2:
             //_service.reAlpha(Persons);
-            _service.reAlpha();
+            Persons = _service.reAlpha();
             break;
         default: // if 1 or something other
             //_service.alpha(Persons);
-            _service.Alpha();
+            Persons = _service.Alpha();
         }
         break;
-    case 2: //sorts by witch gender first and alphabetically
+    case 2: //sorts by which gender first and alphabetically
         cout << "\t1. First female  \n";
         cout << "\t2. First male \n";
         cout << "Your choice(default: ";
@@ -390,13 +390,13 @@ void ConsoleUI::sortItPerson()
         {
         case 2:
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reGender();
+            Persons = _service.Alpha();
+            Persons = _service.reGender();
             break;
         default: // if 1 or something other
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.gender();
+            Persons = _service.Alpha();
+            Persons = _service.gender();
         }
         break;
     case 3:
@@ -409,13 +409,13 @@ void ConsoleUI::sortItPerson()
         {
         case 2:
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.year();
+            Persons = _service.Alpha();
+            Persons = _service.year();
             break;
         default: // if 1 or something other
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reYear();
+            Persons = _service.Alpha();
+            Persons = _service.reYear();
             break;
         }
         break;
@@ -429,13 +429,13 @@ void ConsoleUI::sortItPerson()
         {
         case 2:
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.death();
+            Persons = _service.Alpha();
+            Persons = _service.death();
             break;
         default: // if 1 or something other
             //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reDeath();
+            Persons = _service.Alpha();
+            Persons = _service.reDeath();
         }
         break;
     }

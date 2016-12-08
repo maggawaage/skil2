@@ -31,7 +31,7 @@ public:
     void editBirthYear(int id, int birthYear);
     void editDeathYear(int id, int deathYear);
 
-    vector<Computer> ParseLine(QSqlQuery& line);
+    vector<Computer> ParseLine(QSqlQuery& query);
     vector<Computer> dataAlpha();
     vector<Computer> dataReAlpha();
     vector<Computer> dataType();
