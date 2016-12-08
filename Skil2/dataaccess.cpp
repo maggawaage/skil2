@@ -189,3 +189,61 @@ vector<Person> DataAccess::DataReDeath()
     _query.exec("SELECT * FROM Persons ORDER BY DeathYear DESC");
     return parseLine(query);
 }
+
+//--------- For computer
+
+vector<Computer> DataAccess::ParseLine(QSqlQuery& line)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    vector<Computer> readToVec;
+    while(line.next()){
+        string name = query.value("Name").toString().toStdString();
+        string type = query.value("Type").toString().toStdString();
+        int buildYear = query.value("BuildYear").toUInt();
+        Computer _computer(name, type, buildYear);
+        readToVec.push_back(Computer(name, type, buildYear));
+    }
+    return readToVec;
+}
+vector<Computer> DataAccess::dataAlpha()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("SELECT * FROM Computer ORDER BY Name ASC");
+    return ParseLine(query);
+}
+vector<Computer> DataAccess::dataReAlpha()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    _query.exec("SELECT * FROM Computer ORDER BY Name DESC");
+    return ParseLine(query);
+}
+
+vector<Computer> DataAccess::dataType()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    _query.exec("SELECT * FROM Computer ORDER BY Type ASC");
+    return ParseLine(query);
+}
+vector<Computer> DataAccess::dataReType()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+   _query.exec("SELECT * FROM Computer ORDER BY Type DESC");
+   return ParseLine(query);
+}
+vector<Computer> DataAccess::dataBuildYear()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    _query.exec("SELECT * FROM Computer ORDER BY BuildYear ASC");
+    return ParseLine(query);
+}
+vector<Computer> DataAccess::dataReBuildYear()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    _query.exec("SELECT * FROM Computer ORDER BY BuildYear DESC");
+    return ParseLine(query);
+}
+
+
+
+
+

@@ -12,12 +12,12 @@ class ComputerService
 public:
     ComputerService();
 
-    vector<Computer> alpha(vector<Computer>& Computerlist);
-    vector<Computer> reAlpha(vector<Computer>& Computerlist);
-    vector<Computer> buildYear(vector<Computer>& Computerlist);
-    vector<Computer> reBuildYear(vector<Computer>& Computerlist);
-    vector<Computer> type(vector<Computer>& Computerlist);
-    vector<Computer> reType(vector<Computer>& Computerlist);
+    vector<Computer> Alpha();
+    vector<Computer> reAlpha();
+    vector<Computer> buildYear();
+    vector<Computer> reBuildYear();
+    vector<Computer> type();
+    vector<Computer> reType();
 
     static vector<Computer> SearchName(vector<Computer> list, string searchName);
     static vector<Computer> SearchType(vector<Computer> list, string searchYype);
@@ -28,11 +28,11 @@ public:
     void serviceToFile(vector<Computer> Computer);
 
     vector<Computer> deleteDublicateVector(vector<Computer> Computers);
-    void add(string name, string type, int buildYear)
+    void add(string name, string type, int buildYear);
 
 private:
     vector<Computer> alpha();
-    DataAccess access;
+    DataAccess _access;
 
 };
 

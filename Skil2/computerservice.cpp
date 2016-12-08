@@ -9,27 +9,27 @@ ComputerService::ComputerService()
 
 vector<Computer> ComputerService::Alpha()
 {
-    return _access.DataAlpha();
+    return _access.dataAlpha();
 }
 vector<Computer> ComputerService::reAlpha()
 {
-    return _access.DataReAlpha();
+    return _access.dataReAlpha();
 }
-vector<Computer> ComputerService::year()
+vector<Computer> ComputerService::buildYear()
 {
-    return _access.DataYear();
+    return _access.dataBuildYear();
 }
-vector<Computer> ComputerService::reYear()
+vector<Computer> ComputerService::reBuildYear()
 {
-    return _access.DataReYear();
+    return _access.dataReBuildYear();
 }
 vector<Computer> ComputerService::type()
 {
-    return _access.Datatype();
+    return _access.dataType();
 }
-vector<Computer> ComputerService::retype()
+vector<Computer> ComputerService::reType()
 {
-    return _access.DataRetype();
+    return _access.dataReType();
 }
 
 vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
@@ -46,7 +46,7 @@ vector<Computer> ComputerService::SearchName(vector <Computer> list, string sear
 
     return newList;
 }
-vector<Computer> ComputerService::Searchtype(vector <Computer> list, string searchtype)
+/*vector<Computer> ComputerService::Searchtype(vector <Computer> list, string searchtype)
 {
     vector <Computer> newList;
 
@@ -107,4 +107,4 @@ vector<Computer> ComputerService::deleteDublicateVector(vector<Computer> Compute
 void ComputerService::add(string name, string type, int  buildYear)
 {
     _access.addComputer( name, type,  buildYear );
-}
+}*/

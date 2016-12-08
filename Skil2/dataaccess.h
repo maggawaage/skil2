@@ -27,6 +27,15 @@ public:
     vector<Person> DataDeath();
     vector<Person> DataReDeath();
 
+    vector<Computer> ParseLine(QSqlQuery& line);
+    vector<Computer> dataAlpha();
+    vector<Computer> dataReAlpha();
+    vector<Computer> dataType();
+    vector<Computer> dataReType();
+    vector<Computer> dataBuildYear();
+    vector<Computer> dataReBuildYear();
+
+
 private:
     QSqlDatabase _runningDB;
     QSqlDatabase _query;
