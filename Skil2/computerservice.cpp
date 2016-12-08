@@ -32,7 +32,7 @@ vector<Computer> ComputerService::reType()
     return _access.dataReType();
 }
 
-vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
+/*vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
 {
     vector <Computer> newList;
 
@@ -46,7 +46,7 @@ vector<Computer> ComputerService::SearchName(vector <Computer> list, string sear
 
     return newList;
 }
-/*vector<Computer> ComputerService::Searchtype(vector <Computer> list, string searchtype)
+vector<Computer> ComputerService::Searchtype(vector <Computer> list, string searchtype)
 {
     vector <Computer> newList;
 
@@ -76,19 +76,21 @@ vector<Computer> ComputerService::Search buildYear(vector<Computer> list, int se
 
     return newList;
 }
+*/
 
 vector<Computer> ComputerService::serviceToVector(vector<Computer> Computers)
 {
     return _access.fillVector(Computers);
 }
+/*
 void ComputerService::serviceToFile(vector<Computer> Computers)
 {
      _access.writeVectorToFile(Computers);
 }
 void ComputerService::serviceToFile(string name, string type, int  buildYear )
 {
-    _access.writeToFile( name, type,  buildYear );
-}
+    _access.writeToFile(name, type,  buildYear);
+}*/
 
 vector<Computer> ComputerService::deleteDublicateVector(vector<Computer> Computers)
 {
@@ -104,7 +106,8 @@ vector<Computer> ComputerService::deleteDublicateVector(vector<Computer> Compute
         }
         return Computers;
 }
+
 void ComputerService::add(string name, string type, int  buildYear)
 {
     _access.addComputer( name, type,  buildYear );
-}*/
+}
