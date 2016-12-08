@@ -1,8 +1,9 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 #include "personservice.h"
-#include "dataaccess.h"
+#include "computerservice.h"
 #include "person.h"
+#include "computer.h"
 
 class ConsoleUI
 {
@@ -23,6 +24,7 @@ public:
     void displayVector(vector<Person> printIt, int x = 0);
     void teamLogo();
 private:
+    //ComputerService _Cservice;
     PersonService _service;
     Person PER;
 };

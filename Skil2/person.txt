@@ -1,0 +1,48 @@
+* Ada Lovelace
+f
+1815
+1852
+* Alan Turing
+m
+1912
+1954
+* Anita Borg
+f
+1949
+2003
+* Dennis Ritchie
+m
+1941
+2011
+* Donald Knuth
+m
+1938
+0
+* Edsger W. Dijkstra
+m
+1930
+2002
+* Grace Hopper
+f
+1906
+1992
+* John von Neumann
+m
+1903
+1957
+* Ken
+m
+1943
+0
+* Tim Berners-Lee
+m
+1955
+0
+* Steve Wozniak
+m
+1950
+0
+* Andri
+m
+1996
+0
