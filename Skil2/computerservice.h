@@ -2,6 +2,7 @@
 #define ComputerSERVICE_H
 
 #include <vector>
+#include <string>
 #include "computer.h"
 #include "dataaccess.h"
 using namespace std;
@@ -18,15 +19,16 @@ public:
     vector<Computer> type(vector<Computer>& Computerlist);
     vector<Computer> reType(vector<Computer>& Computerlist);
 
-    //vector<Computer> serviceToVector(vector<Computer> Computer);
-    //void serviceToFile(string name, char gender, int birthYear, int deathYear);
-    //void serviceToFile(vector<Computer> Computer);
-
     static vector<Computer> SearchName(vector<Computer> list, string searchName);
     static vector<Computer> SearchType(vector<Computer> list, string searchYype);
     static vector<Computer> SearchBuildYear(vector<Computer> list, int searchBuildYear);
 
-    //vector<Computer> deleteDublicateVector(vector<Computer> Computers);
+    vector<Computer> serviceToVector(vector<Computer> Computer);
+    void serviceToFile(string name, string type, int birthYear);
+    void serviceToFile(vector<Computer> Computer);
+
+    vector<Computer> deleteDublicateVector(vector<Computer> Computers);
+    void add(string name, string type, int buildYear)
 
 private:
     vector<Computer> alpha();

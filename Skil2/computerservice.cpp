@@ -1,37 +1,110 @@
-#ifndef ComputerSERVICE_H
-#define ComputerSERVICE_H
-
-#include <vector>
-#include "computer.h"
+#include "ComputerService.h"
 #include "dataaccess.h"
-using namespace std;
+#include <algorithm>
 
-class ComputerService
+ComputerService::ComputerService()
 {
-public:
-    ComputerService();
 
-    vector<Computer> alpha(vector<Computer>& Computerlist);
-    vector<Computer> reAlpha(vector<Computer>& Computerlist);
-    vector<Computer> buildYear(vector<Computer>& Computerlist);
-    vector<Computer> reBuildYear(vector<Computer>& Computerlist);
-    vector<Computer> type(vector<Computer>& Computerlist);
-    vector<Computer> reType(vector<Computer>& Computerlist);
+}
 
-    //vector<Computer> serviceToVector(vector<Computer> Computer);
-    //void serviceToFile(string name, char gender, int birthYear, int deathYear);
-    //void serviceToFile(vector<Computer> Computer);
+vector<Computer> ComputerService::Alpha()
+{
+    return _access.DataAlpha();
+}
+vector<Computer> ComputerService::reAlpha()
+{
+    return _access.DataReAlpha();
+}
+vector<Computer> ComputerService::year()
+{
+    return _access.DataYear();
+}
+vector<Computer> ComputerService::reYear()
+{
+    return _access.DataReYear();
+}
+vector<Computer> ComputerService::type()
+{
+    return _access.Datatype();
+}
+vector<Computer> ComputerService::retype()
+{
+    return _access.DataRetype();
+}
 
-    static vector<Computer> SearchName(vector<Computer> list, string searchName);
-    static vector<Computer> SearchType(vector<Computer> list, string searchYype);
-    static vector<Computer> SearchBuildYear(vector<Computer> list, int searchBuildYear);
+vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
+{
+    vector <Computer> newList;
 
-    //vector<Computer> deleteDublicateVector(vector<Computer> Computers);
+    for (int i = 0; i < list.size(); i++)
+    {
+        if (list[i].getName().find(searchName) != string::npos)
+        {
+            newList.push_back(list[i]);
+        }
+    }
 
-private:
-    vector<Computer> alpha();
-    DataAccess access;
+    return newList;
+}
+vector<Computer> ComputerService::Searchtype(vector <Computer> list, string searchtype)
+{
+    vector <Computer> newList;
 
-};
+    for (int i = 0; i < list.size(); i++)
+    {
 
-#endif // ComputerRSERVICE_H
+        if (list[i].getType() == searchtype)
+        {
+            newList.push_back(list[i]);
+        }
+    }
+
+    return newList;
+}
+vector<Computer> ComputerService::Search buildYear(vector<Computer> list, int searchBirth)
+{
+    vector <Computer> newList;
+
+    for (int i = 0; i < list.size(); i++)
+    {
+
+        if (list[i].get buildYear() == searchBirth)
+        {
+            newList.push_back(list[i]);
+        }
+    }
+
+    return newList;
+}
+
+vector<Computer> ComputerService::serviceToVector(vector<Computer> Computers)
+{
+    return _access.fillVector(Computers);
+}
+void ComputerService::serviceToFile(vector<Computer> Computers)
+{
+     _access.writeVectorToFile(Computers);
+}
+void ComputerService::serviceToFile(string name, string type, int  buildYear )
+{
+    _access.writeToFile( name, type,  buildYear );
+}
+
+vector<Computer> ComputerService::deleteDublicateVector(vector<Computer> Computers)
+{
+        for ( size_t i = 0; i < Computers.size() ; i++ )
+        {
+            for ( size_t j = 0; j < Computers.size() ; j++ )
+            {
+                if(( Computers.at(i).getName() == Computers.at(j).getName() ) && (!( i == j )))
+                {
+                    Computers.erase (Computers.begin()+i);
+                }
+            }
+        }
+        return Computers;
+}
+void ComputerService::add(string name, string type, int  buildYear)
+{
+    _access.addComputer( name, type,  buildYear );
+}
