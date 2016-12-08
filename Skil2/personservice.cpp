@@ -103,8 +103,6 @@ vector<Person> PersonService::SearchDeathYear(vector<Person> list, int searchDea
 
     return newList;
 }
-
-
 vector<Person> PersonService::serviceToVector(vector<Person> person)
 {
     return _access.fillVector(person);
@@ -117,7 +115,6 @@ void PersonService::serviceToFile(string name, char gender, int birthYear, int d
 {
     _access.writeToFile(name, gender, birthYear, deathYear);
 }
-
 vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
 {
         for ( size_t i = 0; i < Persons.size() ; i++ )
@@ -132,32 +129,26 @@ vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
         }
         return Persons;
 }
-
 void PersonService::add(string name, char gender, int birthYear, int deathYear)
 {
     _access.addPerson(name, gender, birthYear, deathYear);
 }
-
 void PersonService::editName(string trueName, string name)
 {
     _access.editName(trueName, name);
 }
-
 void PersonService::editGender(string trueName, char gender)
 {
     _access.editGender(trueName, gender);
 }
-
 void PersonService::editBirthYear(string trueName, int birthYear)
 {
     _access.editBirthYear(trueName, birthYear);
 }
-
 void PersonService::editDeathYear(string trueName, int deathYear)
 {
     _access.editDeathYear(trueName, deathYear);
 }
-
 void PersonService::deletePerson(string trueName)
 {
     _access.deletePerson(trueName);

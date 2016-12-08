@@ -45,38 +45,6 @@ void Person::setDeathYear(int deathYear)
 {
      _deathYear = deathYear;
 }
-bool Person::compareName(Person a, Person b)
-{
-    return a._name < b._name;
-}
-bool Person::compareNameReversed(Person a, Person b)
-{
-    return a._name > b._name;
-}
-bool Person::compareYear(Person a, Person b)
-{
-    return a._birthYear < b._birthYear;
-}
-bool Person::compareYearReversed(Person a, Person b)
-{
-    return a._birthYear > b._birthYear;
-}
-bool Person::compareGender(Person a, Person b)
-{
-    return a._gender < b._gender;
-}
-bool Person::compareGenderReversed(Person a, Person b)
-{
-    return a._gender > b._gender;
-}
-bool Person::compareDeath(Person a, Person b)
-{
-    return a._deathYear < b._deathYear;
-}
-bool Person::compareDeathReversed(Person a, Person b)
-{
-    return a._deathYear > b._deathYear;
-}
 bool Person::checkIfSame(vector<Person> Persons, string name)
 {
     int check = 0;

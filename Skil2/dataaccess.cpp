@@ -103,16 +103,15 @@ void DataAccess::writeVectorToFile(vector<Person>famousComputerphiles)
 
 vector<Person> DataAccess::parseLine(QSqlQuery& query)
 {
-    //QSqlQuery query = QSqlQuery(_runningDB);
     vector<Person> readToVec;
     while(query.next())
     {
         string name = query.value("Name").toString().toStdString();
-        char gender = query.value("Gender").toString().toStdString()[0];
+        char gender = query.value("Gender").toString().toDouble();
         int birthYear = query.value("BirthYear").toUInt();
         int deathYear = query.value("DeathYear").toUInt();
         //Person _person(name, gender, birthYear, deathYear);
-        readToVec.push_back(Person(name, gender, birthYear, deathYear));
+        readToVec.push_back(Person(name, birthYear, gender, deathYear));
     }
     return readToVec;
 }
@@ -281,8 +280,3 @@ vector<Computer> DataAccess::dataReBuildYear()
     query.exec("SELECT * FROM Computers ORDER BY BuildYear DESC");
     return ParseLine(query);
 }
-
-
-
-
-
