@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include "dataaccess.h"
 #include "person.h"
 
@@ -29,24 +28,6 @@ vector<Person> DataAccess::fillVector(vector<Person>famousComputerphiles)
     return famousComputerphiles;
 }
 
-vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
-{
-    QSqlQuery query = QSqlQuery(_runningDB);
-    query.exec("select name, type, year of build;");
-    while (query.next())
-    {
-        Computer temp;
-        QString name = query.value(0).toString();
-        temp.setName(name.toStdString());
-        QString type = query.value(1).toString();
-        temp.setType(type.toStdString());
-        QString buildYear = query.value(2).toString();
-        temp.setBuildYear(buildYear.toInt());
-        famousComputers.push_back(temp);
-    }
-    return famousComputers;
-}
-
 void DataAccess::addPerson(string name, char gender, int birthYear, int deathYear)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -58,14 +39,7 @@ void DataAccess::addPerson(string name, char gender, int birthYear, int deathYea
     query.addBindValue(gender);
     query.addBindValue(birthYear);
     query.addBindValue(deathYear);
-    if(query.exec())
-    {
-        cout << "Success" << endl;
-    }
-    else
-    {
-        cout << " Failed " << endl;
-    }
+    query.exec();
 }
 
 void DataAccess::addComputer(string name, string type, int buildYear)
@@ -190,7 +164,63 @@ vector<Person> DataAccess::DataReDeath()
     return parseLine(query);
 }
 
+void DataAccess::editName(int id, string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Person SET Name = :name WHERE ID = :id;");
+
+    query.bindValue(":name", QString::fromStdString(name));
+        query.bindValue(":id", id);
+        query.exec();
+}
+
+void DataAccess::editGender(int id, char gender)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Person SET Gender = :gender WHERE ID = :id;");
+        query.bindValue(":gender",gender);
+        query.bindValue(":id", id);
+        query.exec();
+}
+
+void DataAccess::editBirthYear(int id, int birthYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Person SET BirthYear = :birthYear WHERE ID = :id;");
+        query.bindValue(":birthYear",birthYear);
+        query.bindValue(":id", id);
+        query.exec();
+}
+
+void DataAccess::editDeathYear(int id, int deathYear)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("UPDATE Person SET DeathYear = :birthYear WHERE ID = :id;");
+        query.bindValue(":DeathYear",deathYear);
+        query.bindValue(":id", id);
+        query.exec();
+}
+
+
 //--------- For computer
+
+vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("select name, type, year of build;");
+    while (query.next())
+    {
+        Computer temp;
+        QString name = query.value(0).toString();
+        temp.setName(name.toStdString());
+        QString type = query.value(1).toString();
+        temp.setType(type.toStdString());
+        QString buildYear = query.value(2).toString();
+        temp.setBuildYear(buildYear.toInt());
+        famousComputers.push_back(temp);
+    }
+    return famousComputers;
+}
 
 vector<Computer> DataAccess::ParseLine(QSqlQuery& line)
 {

@@ -31,6 +31,10 @@ public:
 
     vector<Person> deleteDublicateVector(vector<Person> Persons);
     void add(string name, char gender, int birthYear, int deathYear);
+    void editName(int id, string name);
+    void editGender(int id, char gender);
+    void editBirthYear(int id, int birthYear);
+    void editDeathYear(int id, int deathYear);
 
 private:
     //vector<Person> alpha();

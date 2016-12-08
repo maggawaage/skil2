@@ -132,7 +132,29 @@ vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
         }
         return Persons;
 }
+
 void PersonService::add(string name, char gender, int birthYear, int deathYear)
 {
     _access.addPerson(name, gender, birthYear, deathYear);
 }
+
+void PersonService::editName(int id, string name)
+{
+    _access.editName(id, name);
+}
+
+void PersonService::editGender(int id, char gender)
+{
+    _access.editGender(id, gender);
+}
+
+void PersonService::editBirthYear(int id, int birthYear)
+{
+    _access.editBirthYear(id, birthYear);
+}
+
+void PersonService::editDeathYear(int id, int deathYear)
+{
+    _access.editDeathYear(id, deathYear);
+}
+

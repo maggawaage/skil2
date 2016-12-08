@@ -161,7 +161,6 @@ void ConsoleUI::writeComputer()
         cout << "Name(English characters only): ";
         getline(cin, name);
     }
-    //getline 2svar ????
     while (type.empty())
     {
         cout << "Type(English characters only): ";
@@ -374,7 +373,7 @@ void ConsoleUI::sortItPerson()
         {
         case 2:
             //_service.reAlpha(Persons);
-            _service.Alpha();
+            _service.reAlpha();
             break;
         default: // if 1 or something other
             //_service.alpha(Persons);
@@ -750,6 +749,7 @@ void ConsoleUI::deleteFromFilePerson()
 void ConsoleUI::editPerson()
 {
     string newName;
+    char newGender;
     int newYear;
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
@@ -757,15 +757,12 @@ void ConsoleUI::editPerson()
     //couts vector with ID
     displayVector( Persons, 1 );
 
-    char female = 'f';
-    char male = 'm';
-
     cout << "\nEnter the ID of the person you want to edit? ";
-    while(!(cin >> id))
+    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
-        cout << "Enter only corresponding numbers: ";
+        cout << "Enter only corresponding id: ";
     }
     cout << "What do you want to edit?\n "
          <<"\t 1. Name \n"
@@ -776,7 +773,12 @@ void ConsoleUI::editPerson()
     //what to change
     cout << "Your choice: ";
     int editChoice;
-    cin >> editChoice;
+    while ( !(cin >> editChoice) | ( editChoice < 1 ) | ( editChoice > 4 ) )
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only correspondings number from 1-4 ";
+    }
     switch(editChoice)
     {
     case 1:
@@ -789,7 +791,7 @@ void ConsoleUI::editPerson()
         }
         if (PER.checkIfSame(Persons, newName))
         {
-            Persons.at(id-1).setName(newName);
+            _service.editName(id, newName);
         }
         else
         {
@@ -798,14 +800,14 @@ void ConsoleUI::editPerson()
         }
         break;
     case 2:
-        if((Persons.at(id-1).getGender())==male)
+        cout << "Enter new gender: ";
+        while(!(cin>>newGender) | !((newGender == 'm')| (newGender == 'f') ))
         {
-            Persons.at(id-1).setGender(female);
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout << "Enter only m for male or f for female: ";
         }
-        else
-        {
-            Persons.at(id-1).setGender(male);
-        }
+             _service.editGender(id, newGender);
         break;
     case 3:
         cout << "Enter new year: ";
@@ -815,16 +817,9 @@ void ConsoleUI::editPerson()
             cin.ignore(10000,'\n');
             cout << "Enter year only in numbers(YYYY): ";
         }
-        Persons.at(id-1).setBirthYear(newYear);
-        break;        while(!(cin>>newYear))
+        if ( (newYear > Persons.at(id-1).getDeathYear()) | (Persons.at(id-1).getDeathYear() == 0) )
         {
-            cin.clear();
-            cin.ignore(10000,'\n');
-            cout << "Enter year only in numbers(YYYY): ";
-        }
-        if ( (newYear <= Persons.at(id-1).getDeathYear()) )
-        {
-        Persons.at(id-1).setBirthYear(newYear);
+         _service.editBirthYear(id, newYear);
         }
         else
         {
@@ -840,9 +835,9 @@ void ConsoleUI::editPerson()
             cin.ignore(10000,'\n');
             cout << "Enter year only in numbers(YYYY): ";
         }
-        if ( (newYear >= Persons.at(id-1).getBirthYear()) | (newYear==0) )
+        if ( (newYear > Persons.at(id-1).getDeathYear()) | ( newYear == 0 ) )
         {
-        Persons.at(id-1).setDeathYear(newYear);
+         _service.editDeathYear(id, newYear);
         }
         else
         {
@@ -856,7 +851,8 @@ void ConsoleUI::editPerson()
     }
 
     }
-    _service.serviceToFile(Persons);
+    Persons.clear();
+    Persons = _service.serviceToVector(Persons);
     displayVector(Persons);
 }
 
@@ -866,8 +862,7 @@ void ConsoleUI::editComputer()
     string newType;
     int newYear;
     vector<Computer> Computers;
-    //computer
-   // Computers = _service.serviceToVector(Computers);
+    //Computers = _service.serviceToVector(Computers);
     int id;
     //couts vector with ID
     //displayVector( Computers, 1 );
