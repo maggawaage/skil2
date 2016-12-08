@@ -6,16 +6,13 @@
 #include "computer.h"
 #include "database.h"
 #include <QtSql>
+
 class DataAccess
 {
 public:
     DataAccess();
-    void writeToFile(string name, char gender, int birthYear, int deathYear);
-    void writeVectorToFile(vector<Person>famousComputerphiles);
     vector<Person> fillVector(vector<Person>famousComputerphiles);
-    vector<Computer> fillVector(vector<Computer>famousComputers);
     void addPerson(string name, char gender, int birthYear, int deathYear);
-    void addComputer(string name, string type, int buildYear);
 
     vector<Person> parseLine(QSqlQuery& line);
     vector<Person> DataAlpha();
@@ -26,20 +23,30 @@ public:
     vector<Person> DataReGender();
     vector<Person> DataDeath();
     vector<Person> DataReDeath();
+
     void editName(string trueName, string name);
     void editGender(string trueName, char gender);
     void editBirthYear(string trueName, int birthYear);
     void editDeathYear(string trueName, int deathYear);
     void deletePerson(string trueName);
 
-    vector<Computer> ParseLine(QSqlQuery& query);
-    vector<Computer> dataAlpha();
-    vector<Computer> dataReAlpha();
-    vector<Computer> dataType();
-    vector<Computer> dataReType();
-    vector<Computer> dataBuildYear();
-    vector<Computer> dataReBuildYear();
+    //--------Computer----------
 
+    vector<Computer> fillVector(vector<Computer>famousComputers);
+    void addComputer(string name, string type, int buildYear);
+
+    vector<Computer> ParseLine(QSqlQuery& query);
+    vector<Computer> DataComputerAlpha();
+    vector<Computer> DataComputerReAlpha();
+    vector<Computer> DataComputerType();
+    vector<Computer> DataComputerReType();
+    vector<Computer> DataComputerBuildYear();
+    vector<Computer> DataComputerReBuildYear();
+
+    void editComputerName(string trueName, string name);
+    void editType(string trueName, string type);
+    void editBuildYear(string trueName, int buildYear);
+    void deleteComputer(string trueName);
 
 private:
     QSqlDatabase _runningDB;

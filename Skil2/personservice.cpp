@@ -1,7 +1,6 @@
 #include "personservice.h"
 #include "dataaccess.h"
 #include <algorithm>
-#include "dataaccess.h"
 
 PersonService::PersonService()
 {
@@ -107,27 +106,19 @@ vector<Person> PersonService::serviceToVector(vector<Person> person)
 {
     return _access.fillVector(person);
 }
-void PersonService::serviceToFile(vector<Person> person)
-{
-     _access.writeVectorToFile(person);
-}
-void PersonService::serviceToFile(string name, char gender, int birthYear, int deathYear)
-{
-    _access.writeToFile(name, gender, birthYear, deathYear);
-}
 vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
 {
-        for ( size_t i = 0; i < Persons.size() ; i++ )
+    for ( size_t i = 0; i < Persons.size() ; i++ )
+    {
+        for ( size_t j = 0; j < Persons.size() ; j++ )
         {
-            for ( size_t j = 0; j < Persons.size() ; j++ )
+            if(( Persons.at(i).getName() == Persons.at(j).getName() ) && (!( i == j )))
             {
-                if(( Persons.at(i).getName() == Persons.at(j).getName() ) && (!( i == j )))
-                {
-                    Persons.erase (Persons.begin()+i);
-                }
+                Persons.erase (Persons.begin()+i);
             }
         }
-        return Persons;
+    }
+    return Persons;
 }
 void PersonService::add(string name, char gender, int birthYear, int deathYear)
 {

@@ -6,9 +6,9 @@ Computer::Computer()
 }
 Computer::Computer(string name, string type, int buildYear)
 {
-   _name = name;
-   _type = type;
-   _buildYear = buildYear;
+    _name = name;
+    _type = type;
+    _buildYear = buildYear;
 }
 
 string Computer::getName() const
@@ -38,7 +38,7 @@ void Computer::setBuildYear(int buildYear)
     _buildYear = buildYear;
 }
 
-/*
+
 bool Computer::compareName(Computer a, Computer b)
 {
     return a._name < b._name;
@@ -63,10 +63,6 @@ bool Computer::compareTypeReversed(Computer a, Computer b)
 {
     return a._type > b._type;
 }
-*/
-
-
-/*
 bool Computer::checkIfSame(vector<Computer> Computers, string name)
 {
     int check = 0;
@@ -86,4 +82,4 @@ bool Computer::checkIfSame(vector<Computer> Computers, string name)
         return true;
     }
 }
-*/
+

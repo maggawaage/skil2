@@ -6,10 +6,10 @@ Person::Person()
 }
 Person::Person(string name, int birthYear, char gender, int deathYear)
 {
-   _name = name;
-   _birthYear = birthYear;
-   _gender = gender;
-   _deathYear = deathYear;
+    _name = name;
+    _birthYear = birthYear;
+    _gender = gender;
+    _deathYear = deathYear;
 }
 
 
@@ -43,7 +43,7 @@ void Person::setBirthYear(int birthYear)
 }
 void Person::setDeathYear(int deathYear)
 {
-     _deathYear = deathYear;
+    _deathYear = deathYear;
 }
 bool Person::checkIfSame(vector<Person> Persons, string name)
 {

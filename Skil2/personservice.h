@@ -38,7 +38,6 @@ public:
     void deletePerson(string trueName);
 
 private:
-    //vector<Person> alpha();
     DataAccess _access;
 
 };
