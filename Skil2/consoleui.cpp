@@ -110,7 +110,7 @@ void ConsoleUI::run()
             }
             break;
         case 4:
-            cout << "Do you want to delete out a list of person or a computer?\n";
+            cout << "Do you want to delete from a list of persons or a computers?\n";
             cout << "\t1. Delete person  \n";
             cout << "\t2. Delete computer \n";
             cout << "Your choice: ";
@@ -176,7 +176,7 @@ void ConsoleUI::writePerson()
     int birthYear;
     int deathYear;
 
-    //getting valid name,gender,birthYear and deathYear
+    //Getting valid name,gender,birthYear and deathYear
     while (name.empty())
     {
         cout << "Name(English characters only): ";
@@ -212,7 +212,7 @@ void ConsoleUI::writePerson()
         cin >> deathYear;
     }
 
-    //check if name is already in file if not move to file
+    //Checks if name is already in file if not move to file
     vector<Person> Persons;
     Persons = _service.serviceToVector(Persons);
     if(_PER.checkIfSame(Persons, name))
@@ -224,7 +224,7 @@ void ConsoleUI::writePerson()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name has already been added.\a\n";
+        cout << "\nError: This name is already on the list.\a\n";
     }
 }
 
@@ -243,7 +243,7 @@ void ConsoleUI::sortItPerson()
 
     switch(choice)
     {
-    case 1: //sorts alphabetically
+    case 1: //Sorts alphabetically
         cout << "\t1. From A-Z  \n";
         cout << "\t2. From Z-A \n";
         cout << "Your choice: ";
@@ -258,7 +258,7 @@ void ConsoleUI::sortItPerson()
             Persons = _service.Alpha();
         }
         break;
-    case 2: //sorts by which gender first and alphabetically
+    case 2: //Sorts by which gender first and alphabetically
         cout << "\t1. First female  \n";
         cout << "\t2. First male \n";
         cout << "Your choice(default: ";
@@ -352,7 +352,7 @@ void ConsoleUI::searchPerson()
                 cin.ignore(10000,'\n');
                 cout << "Enter corresponding number from 1-5: ";
             }
-            //search by name
+            //Search by name
             if ((conditionNum == 1) & (conditionAvailable[0] == 0))
             {
                 string nameForSearch;
@@ -363,7 +363,7 @@ void ConsoleUI::searchPerson()
                 }
                 SearchPersons = _service.SearchName(SearchPersons, nameForSearch);
             }
-            //search by gender
+            //Search by gender
             else if ((conditionNum == 2) & (conditionAvailable[1] == 0) )
             {
                 char genderForSearch;
@@ -376,7 +376,7 @@ void ConsoleUI::searchPerson()
                 }
                 SearchPersons = _service.SearchGender(SearchPersons, genderForSearch);
             }
-            //search by birth year
+            //Search by birth year
             else if ((conditionNum == 3) & (conditionAvailable[2] == 0))
             {
                 int birthYearForSearch;
@@ -389,7 +389,7 @@ void ConsoleUI::searchPerson()
                 }
                 SearchPersons = _service.SearchBirthYear(SearchPersons, birthYearForSearch);
             }
-            //search by death year
+            //Search by death year
             else if ((conditionNum == 4) & (conditionAvailable[3] == 0))
             {
                 int deathYearForSearch;
@@ -402,7 +402,7 @@ void ConsoleUI::searchPerson()
                 }
                 SearchPersons = _service.SearchDeathYear(SearchPersons, deathYearForSearch);
             }
-            //search by alive
+            //Search by alive
             else if ((conditionNum == 5) & (conditionAvailable[3] == 0))
             {
                 SearchPersons = _service.SearchDeathYear(SearchPersons, 0);
@@ -410,13 +410,13 @@ void ConsoleUI::searchPerson()
 
             conditionAvailable[conditionNum-1] = 1;
 
-            //add type of search
+            //Add type of search
             cout << "Do you want to add another condition (y/n)? ";
             while(!(cin>>moreConditions) | (!((moreConditions== 'y')|(moreConditions == 'Y') | (moreConditions == 'n') | (moreConditions == 'N'))))
             {
                 cin.clear();
                 cin.ignore(10000,'\n');
-                cout << "Enter only y/Y for  or n/N: ";
+                cout << "Enter only y/Y for yes or n/N for no: ";
             }
             cout << " \n";
         }
@@ -442,7 +442,7 @@ void ConsoleUI::searchPerson()
         {
             cin.clear();
             cin.ignore(10000,'\n');
-            cout << "Enter only y/Y for  or n/N: ";
+            cout << "Enter only y/Y for yes or n/N for no: ";
         }
 
     }
@@ -481,7 +481,7 @@ void ConsoleUI::editPerson()
     Persons = _service.serviceToVector(Persons);
     int id;
     string trueName;
-    //couts vector with ID
+    //Couts vector with ID
     displayVector( Persons, 1 );
 
     cout << "\nEnter the ID of the person you want to edit? ";
@@ -500,7 +500,7 @@ void ConsoleUI::editPerson()
          <<"\t 3. Year of birth \n"
          <<"\t 4. Year of death  \n";
 
-    //what to change
+    //What to change
     cout << "Your choice: ";
     int editChoice;
     while ( !(cin >> editChoice) | ( editChoice < 1 ) | ( editChoice > 4 ) )
@@ -526,7 +526,7 @@ void ConsoleUI::editPerson()
         else
         {
             system(CLEAR);
-            cout << "This name has already been added. Nothing was edited\n";
+            cout << "This name is already on the list. Nothing was edited\n";
         }
         break;
     case 2:
@@ -589,7 +589,7 @@ void ConsoleUI::editPerson()
 void ConsoleUI::displayVector( vector<Person> printIt, int x )
 {
     cout << "\n";
-    //couts ID if you want
+    //Couts ID if you want
     if (x == 1)
     {
         cout << "ID" << "\t";
@@ -603,7 +603,7 @@ void ConsoleUI::displayVector( vector<Person> printIt, int x )
 
     for(size_t i = 0; i < printIt.size(); i++)
     {
-        //couts ID number if you want
+        //Couts ID number if you want
         cout.setf(ios::left);
         if (x == 1)
         {
@@ -647,7 +647,7 @@ void ConsoleUI::writeComputer()
     string type;
     int buildYear;
 
-    //getting valid name,gender,birthYear and deathYear
+    //Getting valid name, type and build year
     while (name.empty())
     {
         cout << "Name(English characters only): ";
@@ -662,10 +662,10 @@ void ConsoleUI::writeComputer()
     cout << "Build year: ";
     while(!(cin>>buildYear))
     {
-        cout << "Enter birth year only in numbers(YYYY): ";
+        cout << "Enter build year only in numbers(YYYY): ";
         cin.ignore(10000,'\n');
     }
-    //check if name is already in file if not move to file
+    //Check if name is already in file if not move to file
     vector<Computer> Computers;
     Computers = _Cservice.serviceToVector(Computers);
     if(_COP.checkIfSame(Computers, name))
@@ -677,7 +677,7 @@ void ConsoleUI::writeComputer()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name has already been added.\a\n";
+        cout << "\nError: This name is already on the list.\a\n";
     }
 }
 
@@ -690,14 +690,14 @@ void ConsoleUI::sortItComputer()
     cout << "How would you like to sort?" << endl;
     cout << "\t1. By name  \n";
     cout << "\t2. By type \n";
-    cout << "\t3. By buildhyear \n";
+    cout << "\t3. By buildyear \n";
     cout << endl;
     cout << "Your choice: ";
     cin >> choice;
 
     switch(choice)
     {
-    case 1: //sorts alphabetically
+    case 1: //Sorts alphabetically
         cout << "\t1. From A-Z  \n";
         cout << "\t2. From Z-A \n";
         cout << "Your choice: ";
@@ -712,10 +712,10 @@ void ConsoleUI::sortItComputer()
             Computers = _Cservice.Alpha();
         }
         break;
-    case 2: //sorts by which gender first and alphabetically
+    case 2: //Sorts by which gender first and alphabetically
         cout << "\t1. From A-Z  \n";
         cout << "\t2. From Z-A \n";
-        cout << "Your choice(default: ";
+        cout << "Your choice(default): ";
         int choiceGender;
         cin >> choiceGender;
         switch(choiceGender)
@@ -790,7 +790,7 @@ void ConsoleUI::searchComputer()
                     cin.ignore(10000,'\n');
                     cout << "Enter corresponding number from 1-3: ";
                 }
-                //search by name
+                //Search by name
                 if ((conditionNum == 1) & (conditionAvailable[0] == 0))
                 {
                     string nameForSearch;
