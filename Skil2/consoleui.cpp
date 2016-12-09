@@ -8,6 +8,8 @@
 //system(CLEAR) for windows and linux
 #ifdef _WIN32
 #define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
 #endif
 
 using namespace std;
