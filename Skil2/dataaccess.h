@@ -48,6 +48,8 @@ public:
     void editBuildYear(string trueName, int buildYear);
     void deleteComputer(string trueName);
 
+    void linkPersonTwoComputer(int Person_ID, int Computer_ID);
+
 private:
     QSqlDatabase _runningDB;
     QSqlDatabase _query;

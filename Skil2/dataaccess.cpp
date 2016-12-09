@@ -263,4 +263,13 @@ void DataAccess::deleteComputer(string trueName)
     query.exec();
 }
 
+void DataAccess::linkPersonTwoComputer(int Person_ID, int Computer_ID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("INSERT INTO CID_PID_LINK (Person_ID, Computer_ID) "
+                  "VALUES (?, ?)");
+    query.addBindValue(Person_ID);
+    query.addBindValue(Computer_ID);
+    query.exec();
+}
 

@@ -47,7 +47,7 @@ vector<Person> PersonService::SearchName(vector <Person> list, string searchName
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
         if (list[i].getName().find(searchName) != string::npos)
         {
@@ -61,7 +61,7 @@ vector<Person> PersonService::SearchGender(vector <Person> list, char searchGend
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getGender() == searchGender)
@@ -76,7 +76,7 @@ vector<Person> PersonService::SearchBirthYear(vector<Person> list, int searchBir
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getBirthYear() == searchBirth)
@@ -91,7 +91,7 @@ vector<Person> PersonService::SearchDeathYear(vector<Person> list, int searchDea
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getDeathYear() == searchDeath)
@@ -143,4 +143,9 @@ void PersonService::editDeathYear(string trueName, int deathYear)
 void PersonService::deletePerson(string trueName)
 {
     _access.deletePerson(trueName);
+}
+
+void PersonService::linkPersonToComputer(int PersonID, int ComputerID)
+{
+    _access.linkPersonToComputer();
 }

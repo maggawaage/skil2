@@ -36,7 +36,7 @@ vector<Computer> ComputerService::SearchName(vector <Computer> list, string sear
 {
     vector <Computer> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
         if (list[i].getName().find(searchName) != string::npos)
         {
@@ -50,7 +50,7 @@ vector<Computer> ComputerService::SearchType(vector <Computer> list, string sear
 {
     vector <Computer> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getType().find(searchType) != string::npos)
@@ -65,7 +65,7 @@ vector<Computer> ComputerService::SearchBuildYear(vector<Computer> list, int sea
 {
     vector <Computer> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getBuildYear() == searchBuildYear)
