@@ -599,6 +599,7 @@ void ConsoleUI::searchPerson()
 
     while (keepSearching == 'y')
     {
+        SearchPersons.clear();
         SearchPersons= _service.serviceToVector(SearchPersons);
 
         char moreConditions = 'y';
@@ -732,6 +733,7 @@ void ConsoleUI::searchComputer()
 
         while (keepSearching == 'y')
         {
+            SearchComputers.clear();
             SearchComputers= _Cservice.serviceToVector(SearchComputers);
 
             char moreConditions = 'y';
@@ -741,7 +743,7 @@ void ConsoleUI::searchComputer()
             searchString[0] = "\t 1. Name \n";
             searchString[1] = "\t 2. Type \n";
             searchString[2] = "\t 3. Build Year \n";
-            searchString[3] = "\t 4. Built? \n";
+            searchString[3] = "\t 4. Not built \n";
 
 
             while (moreConditions == 'y' && (!(conditionAvailable[0] && conditionAvailable[1] && conditionAvailable[2] && conditionAvailable[3])))
