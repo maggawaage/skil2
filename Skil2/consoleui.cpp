@@ -34,14 +34,17 @@ void ConsoleUI::run()
         cout << "\t3. Search list\n";
         cout << "\t4. Delete from list\n";
         cout << "\t5. Edit list\n";
-        cout << "\t6. Quit \n";
+        cout << "\t6. About \n";
+        cout << "\t7. GitHub location \n";
+        cout << "\t8. Quit \n";
+
         cout << endl;
         cout << "Your choice: ";
         while(!(cin>>choice))
         {
             cin.clear();
             cin.ignore(10000,'\n');
-            cout << "Enter corresponding number from 1-6: ";
+            cout << "Enter corresponding number from 1-8: ";
         }
 
         switch(choice)
@@ -147,6 +150,14 @@ void ConsoleUI::run()
             }
             break;
         case 6:
+            system(CLEAR);
+            about();
+            break;
+         case 7:
+            system(CLEAR);
+            system ("start https://github.com/maggawaage/skil2");
+            break;
+        case 8:
             exit(0);
             break;
         default:
@@ -1019,15 +1030,31 @@ void ConsoleUI::displayComputerVector( vector<Computer> printIt, int x )
     cout << endl;
 }
 
+void ConsoleUI::about()
+{
+    cout << endl <<"\tABOUT" << endl
+         << "\tComputer Scientist and Notable Computers Linking Software (CSANCLS)" << endl
+         << "\tCreated by: Group 7" << endl
+         << "\tMembers: Andri Thor Sveinbjornsson\n"
+         << "\t         Bjorg Arna Elfarsdottir\n"
+         << "\t         Fridrik Thjalfi Stefansson\n"
+         << "\t         Isabella Yr Finnsdottir\n"
+         << "\t         Margret Kristin Waage Bjornssdottir\n"
+         << "\t         Soley Asgeirsdottir\n";
+}
+
 void ConsoleUI::teamLogo()
 {
     //add team logo
-    cout <<  "made by:\n"
-         <<"--------------------------------------------------\n"
-         <<"|  _____ _____    _    __  __   _____    ____    |\n"
-         <<"| |_   _|____ |  / \\  |  \\/  | |  ___|	||\"\"||	 |\n"
-         <<"|   | |   |_  | / _ \\ | |\\/| |  \\ \\     ||__||   |\n"
-         <<"|   | |  ___| |/ ___ \\| |  | |   \\ \\    [ -=.]`) |\n"
-         <<"|   |_| |_____/_/   \\_|_|  |_|    \\_\\   ====== 0 |\n"
-         <<"|________________________________________________|\n";
+    cout <<  "Computer Scientist and Notable Computers Linking Software\n"
+             <<"-------------------------------------------------------------------------------------------------------\n"
+             <<"|   ,ad8888ba,    ad88888ba          db         888b      88    ,ad8888ba,   88            ad88888ba  |  \n"
+             <<"|  d8\"'    `\"8b  d8\"     \"8b        d88b        8888b     88   d8\"'    `\"8b  88           d8\"     \"8b | \n"
+             <<"| d8'            Y8,               d8'`8b       88 `8b    88  d8'            88           Y8,         | \n"
+             <<"| 88             `Y8aaaaa,        d8'  `8b      88  `8b   88  88             88           `Y8aaaaa,   | \n"
+             <<"| 88               `\"\"\"\"\"8b,     d8YaaaaY8b     88   `8b  88  88             88             `\"\"\"\"\"8b, | \n"
+             <<"| Y8,                    `8b    d8\"\"\"\"\"\"\"\"8b    88    `8b 88  Y8,            88                   `8b | \n"
+             <<"|  Y8a.    .a8P  Y8a     a8P   d8'        `8b   88     `8888   Y8a.    .a8P  88           Y8a     a8P | \n"
+             <<"|   `\"Y8888Y\"'    \"Y88888P\"   d8'          `8b  88      `888    `\"Y8888Y\"'   88888888888   \"Y88888P\"  |  \n"
+             <<"-------------------------------------------------------------------------------------------------------";
 }

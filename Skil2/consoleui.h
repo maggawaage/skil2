@@ -24,6 +24,7 @@ public:
     void deleteFromFileComputer();
     void editComputer();
     void displayComputerVector( vector<Computer> printIt, int x = 0 );
+    void about();
     void teamLogo();
 private:
     ComputerService _Cservice;
