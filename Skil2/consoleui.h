@@ -23,8 +23,8 @@ public:
     void editComputer();
     void displayVector(vector<Person> printIt, int x = 0);
     void displayComputerVector( vector<Computer> printIt, int x = 0 );
-    void personLinkedToComputer();//eftir að útfæra
-    void computerLinkedToPerson();//Eftir að útfæra
+    void personLinkedToComputer();
+    void computerLinkedToPerson();
     void about();
     void teamLogo();
 

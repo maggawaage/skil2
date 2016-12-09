@@ -14,7 +14,7 @@ public:
     vector<Person> fillVector(vector<Person>famousComputerphiles);
     void addPerson(string name, char gender, int birthYear, int deathYear);
 
-    vector<Person> parseLine(QSqlQuery& line);
+    vector<Person> parsePersonLine(QSqlQuery& line);
     vector<Person> DataAlpha();
     vector<Person> DataReAlpha();
     vector<Person> DataYear();
@@ -35,7 +35,7 @@ public:
     vector<Computer> fillVector(vector<Computer>famousComputers);
     void addComputer(string name, string type, int buildYear);
 
-    vector<Computer> ParseLine(QSqlQuery& query);
+    vector<Computer> parseComputerLine(QSqlQuery& query);
     vector<Computer> computerAlpha();
     vector<Computer> computerReAlpha();
     vector<Computer> computerType();

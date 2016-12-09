@@ -37,7 +37,7 @@ public:
     void editDeathYear(string trueName, int deathYear);
     void deletePerson(string trueName);
 
-    void linkPersonToComputer(int PersonID, int ComputerID);//inserti into
+    void linkPersonToComputer(int PersonID, int ComputerID);
     vector<Computer> getComputersConnectedToPerson(string personName);
 
 

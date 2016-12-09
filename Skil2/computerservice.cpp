@@ -119,9 +119,7 @@ vector<Computer> ComputerService::reBuildyear()
 
 vector<Person> ComputerService::getPersonsConnectedToComp(string computerName)
 {
-    //TODO: Find id of computer with given name
-    _access.getComputerIdByName(computerName);
-    int id = 0;
+    int id=_access.getComputerIdByName(computerName);
     return _access.getPersonsConnectedToComputers(id);
 }
 

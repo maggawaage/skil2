@@ -102,6 +102,7 @@ vector<Person> PersonService::serviceToVector(vector<Person> person)
 {
     return _access.fillVector(person);
 }
+
 vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
 {
     for ( size_t i = 0; i < Persons.size() ; i++ )
@@ -149,10 +150,7 @@ void PersonService::linkPersonToComputer(int PersonID, int ComputerID) //insert 
 
 vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
 {
-    //TODO: Find ID of person by using their name
-    //int myFunction(string name)
-    _access.getPersonIdByName(personName);
-    int id = 0;
+    int id =_access.getPersonIdByName(personName);
     return _access.getComputersConnectedToPersons(id);
 }
 

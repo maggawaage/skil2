@@ -75,8 +75,8 @@ void ConsoleUI::run()
             break;
         case 2:
             cout << "Do you want to print out a list of person or a computer?\n";
-            cout << "\t1. Print out person  \n";
-            cout << "\t2. Print out computer \n";
+            cout << "\t1. Print out person/s  \n";
+            cout << "\t2. Print out computer/s \n";
             cout << "\t3. Print list of persons connected to computer/s \n";
             cout << "\t4. Print list of computers connected to person/s \n";
             cout << "Your choice: ";
@@ -103,8 +103,8 @@ void ConsoleUI::run()
             break;
         case 3:
             cout << "Do you want to search for a person or a computer?\n";
-            cout << "\t1. Search person  \n";
-            cout << "\t2. Search computer \n";
+            cout << "\t1. Search person/s  \n";
+            cout << "\t2. Search computer/s \n";
             cout << "Your choice: ";
             int searchChoice;
             cin >> searchChoice;
@@ -177,6 +177,7 @@ void ConsoleUI::run()
                 system ("open https://github.com/maggawaage/skil2");
             }
             #endif
+            break;
         case 8:
             exit(0);
             break;
@@ -288,34 +289,85 @@ void ConsoleUI::writeComputer()
 
 void ConsoleUI::writeConnection()
 {
-    //má bæta:
-    //checka á inputinu
-    // ekki neyða notandann til að vita hvaða id hann þarf, sýnið honum t.d. listann með id's
-
-    cout << "Enter the ID of the person you would like to connect\n";
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
     int pID;
-    cin >> pID;
-    cout << "Enter the ID of the computer you would like to connect\n";
+    //Couts vector with ID
+    displayVector( Persons, 1 );
+
+    cout << "\nEnter the ID of the Person you would like to connect:  ";
+    while(!(cin >> pID) | (pID < 1) | (pID > (int)Persons.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding id: ";
+    }
+
+    vector<Computer> Computers;
+    Computers = _Cservice.serviceToVector(Computers);
     int cID;
-    cin >> cID;
+    displayComputerVector(Computers, 1);
+
+    cout << "\nEnter the ID of the computer you would like to connect:";
+    while(!(cin >> cID) | (cID < 1) | (cID > (int)Computers.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding numbers: ";
+    }
     _service.linkPersonToComputer(pID, cID);
 
 }
 
 // Get all persons that are connected to one computer
-void ConsoleUI::personLinkedToComputer()//eftir að útfæra
+void ConsoleUI::personLinkedToComputer()
 {
-    //TODO:  Send name of computer
-    string name;
-    _Cservice.getPersonsConnectedToComp(name);
+    vector<Computer> Computers;
+    Computers = _Cservice.serviceToVector(Computers);
+    int id;
+    string trueName;
+    displayComputerVector(Computers, 1);
+
+    cout << "\nEnter the ID of the Computer you want to find connections for: ";
+    while(!(cin >> id) | (id < 1) | (id > (int)Computers.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding numbers: ";
+    }
+
+    trueName = Computers.at(id-1).getName();
+    vector<Person> Persons;
+    Persons=_Cservice.getPersonsConnectedToComp(trueName);
+    Persons=_service.deleteDublicateVector(Persons);
+    system(CLEAR);
+    displayVector(Persons);
 }
 
 // Get all Computers that are connected to a Person
-void ConsoleUI::computerLinkedToPerson()//Eftir að útfæra
+void ConsoleUI::computerLinkedToPerson()
 {
-    //TODO: Send Name of person
-    string name;
-    _service.getComputersConnectedToPerson(name);
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    size_t id;
+    string trueName;
+    //Couts vector with ID
+    displayVector( Persons, 1 );
+
+    cout << "\nEnter the ID of the person you want to find connections for:  ";
+    while(!(cin >> id) | (id < 1) | (id > (int)Persons.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding id: ";
+    }
+
+    trueName = Persons.at(id-1).getName();
+    vector<Computer> Computers;
+    Computers=_service.getComputersConnectedToPerson(trueName);
+    Computers=_Cservice.deleteDublicateVector(Computers);
+    system(CLEAR);
+    displayComputerVector(Computers);
 }
 
 void ConsoleUI::sortItPerson()
