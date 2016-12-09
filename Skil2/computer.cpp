@@ -39,30 +39,6 @@ void Computer::setBuildYear(int buildYear)
 }
 
 
-bool Computer::compareName(Computer a, Computer b)
-{
-    return a._name < b._name;
-}
-bool Computer::compareNameReversed(Computer a, Computer b)
-{
-    return a._name > b._name;
-}
-bool Computer::compareBuildYear(Computer a, Computer b)
-{
-    return a._buildYear < b._buildYear;
-}
-bool Computer::compareBuildYearReversed(Computer a, Computer b)
-{
-    return a._buildYear > b._buildYear;
-}
-bool Computer::compareType(Computer a, Computer b)
-{
-    return a._type < b._type;
-}
-bool Computer::compareTypeReversed(Computer a, Computer b)
-{
-    return a._type > b._type;
-}
 bool Computer::checkIfSame(vector<Computer> Computers, string name)
 {
     int check = 0;

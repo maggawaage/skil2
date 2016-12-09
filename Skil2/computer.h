@@ -19,12 +19,6 @@ public:
     void setType(string type);
     void setBuildYear(int buildYear);
 
-    static bool compareName(  Computer a,   Computer b);
-    static bool  compareNameReversed(  Computer a,   Computer b);
-    static bool  compareBuildYear(  Computer a,   Computer b);
-    static bool  compareBuildYearReversed(  Computer a,   Computer b);
-    static bool  compareType(  Computer a,   Computer b);
-    static bool  compareTypeReversed(  Computer a,   Computer b);
     static bool checkIfSame(vector<Computer> Computers, string name);
 
 

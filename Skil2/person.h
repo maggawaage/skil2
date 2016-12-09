@@ -15,6 +15,7 @@ public:
     char getGender() const;
     int getBirthYear() const;
     int getDeathYear() const;
+
     void setName(string name);
     void setGender(char gender);
     void setBirthYear(int birthYear);

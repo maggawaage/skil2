@@ -26,6 +26,7 @@ public:
     void personLinkedToComputer();
     void computerLinkedToPerson();
     void about();
+    void printDabs();
     void teamLogo();
 
 private:

@@ -20,16 +20,14 @@ public:
     vector<Person> death();
     vector<Person> reDeath();
 
-    vector<Person> serviceToVector(vector<Person> person);
-    void serviceToFile(string name, char gender, int birthYear, int deathYear);
-    void serviceToFile(vector<Person> person);
-
     static vector<Person> SearchName(vector<Person> list, string name);
     static vector<Person> SearchGender(vector<Person> list, char gender);
     static vector<Person> SearchBirthYear(vector<Person> list, int birthYear);
     static vector<Person> SearchDeathYear(vector<Person> list, int deathYear);
 
+    vector<Person> serviceToVector(vector<Person> person);
     vector<Person> deleteDublicateVector(vector<Person> Persons);
+
     void add(string name, char gender, int birthYear, int deathYear);
     void editName(string trueName, string name);
     void editGender(string trueName, char gender);
