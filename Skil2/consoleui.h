@@ -22,6 +22,7 @@ public:
     void editPerson();
     void editComputer();
     void displayVector(vector<Person> printIt, int x = 0);
+    void displayVectorComputer(vector<Computer> printIt, int x = 0);
     void teamLogo();
 private:
     //ComputerService _Cservice;

@@ -43,7 +43,6 @@ vector<Person> PersonService::reDeath()
 {
     return _access.DataReDeath();
 }
-
 vector<Person> PersonService::SearchName(vector <Person> list, string searchName)
 {
     vector <Person> newList;
@@ -152,4 +151,27 @@ void PersonService::editDeathYear(string trueName, int deathYear)
 void PersonService::deletePerson(string trueName)
 {
     _access.deletePerson(trueName);
+}vector<Computer> PersonService::name()
+{
+    return _access.dataType();
+}
+vector<Computer> PersonService::reName()
+{
+    return _access.dataReType();
+}
+vector<Computer> PersonService::type()
+{
+    return _access.dataType();
+}
+vector<Computer> PersonService::reType()
+{
+    return _access.dataReType();
+}
+vector<Computer> PersonService::buildyear()
+{
+    return _access.dataType();
+}
+vector<Computer> PersonService::reBuildyear()
+{
+    return _access.dataReType();
 }

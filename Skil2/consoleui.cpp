@@ -256,13 +256,12 @@ void ConsoleUI::writePerson()
 //Laga ad computer
 void ConsoleUI::sortItComputer()
 {
-    vector<Person> Persons;
-    Persons = _service.serviceToVector(Persons);
+    vector<Computer> Computer;
     int choice = 0;
     cout << "How would you like to sort?" << endl;
     cout << "\t1. By name  \n";
-    cout << "\t2. By gender \n";
-    cout << "\t3. By birthyear \n";
+    cout << "\t2. By type \n";
+    cout << "\t3. By buildyear \n";
     cout << "\t4. By year of death \n";
     cout << endl;
     cout << "Your choice: ";
@@ -279,78 +278,54 @@ void ConsoleUI::sortItComputer()
         switch(choiceAlpha)
         {
         case 2:
-            _service.reAlpha();
+            Computer = _service.name();
             break;
         default: // if 1 or something other
-            _service.Alpha();
+            Computer = _service.reName();
         }
         break;
-    case 2: //sorts by witch gender first and alphabetically
-        cout << "\t1. First female  \n";
-        cout << "\t2. First male \n";
-        cout << "Your choice(default: ";
-        int choiceGender;
-        cin >> choiceGender;
-        switch(choiceGender)
+    case 2: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceType;
+        cin >> choiceType;
+        switch(choiceType)
         {
         case 2:
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reGender();
+            Computer = _service.name();
+            Computer = _service.reType();
             break;
         default: // if 1 or something other
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.gender();
+            Computer = _service.name();
+            Computer = _service.type();
         }
         break;
     case 3:
         cout << "\t1. From highest to lowest.  \n";
         cout << "\t2. From lowest to highest. \n";
         cout << "Your choice: ";
-        int choiceBirthYear;
-        cin >> choiceBirthYear;
-        switch(choiceBirthYear)
+        int choiceBuildYear;
+        cin >> choiceBuildYear;
+        switch(choiceBuildYear)
         {
         case 2:
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.year();
+            Computer = _service.name();
+            Computer = _service.buildyear();
             break;
         default: // if 1 or something other
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reYear();
+            Computer = _service.name();
+            Computer = _service.reBuildyear();
             break;
-        }
-        break;
-    case 4:
-        cout << "\t1. From highest to lowest. \n";
-        cout << "\t2. From lowest to highest.\n";
-        cout << "Your choice: ";
-        int choiceDeathYear;
-        cin >> choiceDeathYear;
-        switch(choiceDeathYear)
-        {
-        case 2:
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.death();
-            break;
-        default: // if 1 or something other
-            //_service.alpha(Persons);
-            _service.Alpha();
-            _service.reDeath();
         }
         break;
     }
-    displayVector(Persons);
+    displayVectorComputer(Computer);
 }
 
 void ConsoleUI::sortItPerson()
 {
     vector<Person> Persons;
-    //Persons = _service.serviceToVector(Persons);
     int choice = 0;
     cout << "How would you like to sort?" << endl;
     cout << "\t1. By name  \n";
@@ -972,6 +947,43 @@ void ConsoleUI::displayVector( vector<Person> printIt, int x )
             cout.width(15);
             cout << '-'
                  << "-\n";
+        }
+    }
+}
+void ConsoleUI::displayVectorComputer( vector<Computer> printIt, int x )
+{
+    cout << "\n";
+    //couts ID if you want
+    if (x == 1)
+    {
+        cout << "ID" << "\t";
+    }
+    cout << "Name"<< "\t\t\t" << "Type" << "\t\t" << "Build year" << endl;
+    cout <<"========================================================================\n";
+
+    for(size_t i = 0; i < printIt.size(); i++)
+    {
+        //couts ID number if you want
+        cout.setf(ios::left);
+        if (x == 1)
+        {
+            cout.width(8);
+            cout << i+1;
+        }
+        cout.width(24);
+        cout << printIt[i].getName();
+        cout.width(12);
+        cout << printIt[i].getType();
+        if (!(printIt[i].getBuildYear() == 0))
+        {
+            cout.width(15);
+            cout << printIt[i].getBuildYear();
+
+        }
+        else
+        {
+            cout.width(15);
+            cout << "-\n";
         }
     }
 }

@@ -230,15 +230,14 @@ vector<Computer> DataAccess::fillVector(vector<Computer>famousComputers)
     return famousComputers;
 }
 
-vector<Computer> DataAccess::ParseLine(QSqlQuery& line)
+vector<Computer> DataAccess::ParseLine(QSqlQuery& query)
 {
-    QSqlQuery query = QSqlQuery(_runningDB);
     vector<Computer> readToVec;
-    while(line.next()){
+    while(query.next())
+    {
         string name = query.value("Name").toString().toStdString();
         string type = query.value("Type").toString().toStdString();
         int buildYear = query.value("BuildYear").toUInt();
-        Computer _computer(name, type, buildYear);
         readToVec.push_back(Computer(name, type, buildYear));
     }
     return readToVec;
