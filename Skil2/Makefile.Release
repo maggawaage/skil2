@@ -49,27 +49,32 @@ SOURCES       = main.cpp \
 		person.cpp \
 		personservice.cpp \
 		computer.cpp \
-		database.cpp 
+		database.cpp \
+		computerservice.cpp 
 OBJECTS       = release\main.obj \
 		release\consoleui.obj \
 		release\dataaccess.obj \
 		release\person.obj \
 		release\personservice.obj \
 		release\computer.obj \
-		release\database.obj
+		release\database.obj \
+		release\computerservice.obj
 
 DIST          =  consoleui.h \
 		dataaccess.h \
 		personservice.h \
 		person.h \
 		computer.h \
-		database.h main.cpp \
+		database.h \
+		computerservice.h \
+		dataaccess_copy.h main.cpp \
 		consoleui.cpp \
 		dataaccess.cpp \
 		person.cpp \
 		personservice.cpp \
 		computer.cpp \
-		database.cpp
+		database.cpp \
+		computerservice.cpp
 QMAKE_TARGET  = skil11
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = skil11.exe
@@ -118,7 +123,7 @@ dist:
 	$(ZIP) skil11.zip $(SOURCES) $(DIST) skil2.pro ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\spec_pre.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\common\angle.conf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\common\msvc-base.conf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\common\msvc-desktop.conf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\qconfig.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_location.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_script.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\qt_functions.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\qt_config.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\win32\qt_config.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\win32-msvc2015\qmake.conf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\spec_post.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\default_pre.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\resolve_config.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\default_post.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\build_pass.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\win32\console.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\qml_debug.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\win32\rtti.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\precompile_header.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\warn_on.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\qt.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\resources.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\moc.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\file_copies.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\testcase_targets.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\exceptions.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\yacc.prf ..\..\..\..\QT\5.7\msvc2015_64\mkspecs\features\lex.prf skil2.pro ..\..\..\..\QT\5.7\msvc2015_64\lib\Qt5Sql.prl ..\..\..\..\QT\5.7\msvc2015_64\lib\Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.obj release\consoleui.obj release\dataaccess.obj release\person.obj release\personservice.obj release\computer.obj release\database.obj
+	-$(DEL_FILE) release\main.obj release\consoleui.obj release\dataaccess.obj release\person.obj release\personservice.obj release\computer.obj release\database.obj release\computerservice.obj
 	-$(DEL_FILE) release\skil11.exp
 
 distclean: clean 
@@ -399,7 +404,8 @@ release\main.obj: main.cpp consoleui.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qcombobox.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlrelationaltablemodel.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqltablemodel.h \
-		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h \
+		computerservice.h
 
 release\consoleui.obj: consoleui.cpp consoleui.h \
 		personservice.h \
@@ -646,7 +652,8 @@ release\consoleui.obj: consoleui.cpp consoleui.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qcombobox.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlrelationaltablemodel.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqltablemodel.h \
-		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h \
+		computerservice.h
 
 release\dataaccess.obj: dataaccess.cpp dataaccess.h \
 		person.h \
@@ -1385,6 +1392,252 @@ release\database.obj: database.cpp database.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqltablemodel.h \
 		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h \
 		person.h
+
+release\computerservice.obj: computerservice.cpp computerservice.h \
+		computer.h \
+		dataaccess.h \
+		person.h \
+		database.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\QtSql \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\QtSqlDepends \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\QtCore \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\QtCoreDepends \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstractanimation.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qobject.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qobjectdefs.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qnamespace.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qglobal.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qconfig.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfeatures.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsystemdetection.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qprocessordetection.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtypeinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtypetraits.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qisenum.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsysinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlogging.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qflags.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qatomic.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbasicatomic.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qgenericatomic.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qglobalstatic.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmutex.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qnumeric.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qversiontagging.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstring.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qchar.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbytearray.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qrefcount.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qarraydata.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstringbuilder.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlist.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qalgorithms.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qiterator.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qhashfunctions.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpair.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbytearraylist.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstringlist.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qregexp.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstringmatcher.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcoreevent.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qscopedpointer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmetatype.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qobject_impl.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qanimationgroup.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qparallelanimationgroup.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpauseanimation.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpropertyanimation.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qvariantanimation.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qeasingcurve.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qvector.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpoint.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qvariant.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmap.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qdebug.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qhash.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtextstream.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qiodevice.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlocale.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qshareddata.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qset.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsharedpointer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsharedpointer_impl.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsequentialanimationgroup.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtextcodec.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qendian.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlibraryinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qdatetime.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbuffer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qdatastream.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qdir.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfileinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfile.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfiledevice.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qdiriterator.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfileselector.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\QObject \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\QStringList \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfilesystemwatcher.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlockfile.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qloggingcategory.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qprocess.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qresource.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsavefile.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsettings.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstandardpaths.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstorageinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtemporarydir.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\QScopedPointer \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtemporaryfile.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qurl.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qurlquery.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstractproxymodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qidentityproxymodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsortfilterproxymodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qjsonarray.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qjsonvalue.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qjsondocument.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qjsonobject.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstracteventdispatcher.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstractnativeeventfilter.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbasictimer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmath.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmetaobject.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmimedata.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qobjectcleanuphandler.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpointer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsharedmemory.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsignalmapper.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsocketnotifier.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsystemsemaphore.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtimer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtranslator.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qwineventnotifier.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmimedatabase.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmimetype.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfactoryinterface.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlibrary.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qplugin.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qpluginloader.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\quuid.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstractstate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qabstracttransition.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qeventtransition.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfinalstate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qhistorystate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsignaltransition.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstatemachine.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qexception.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfuture.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfutureinterface.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qrunnable.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qresultstore.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfuturesynchronizer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qfuturewatcher.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qreadwritelock.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsemaphore.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qthread.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qthreadpool.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qthreadstorage.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qwaitcondition.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qarraydataops.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qarraydatapointer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbitarray.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qbytearraymatcher.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcache.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcollator.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcommandlineoption.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcommandlineparser.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qcryptographichash.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qelapsedtimer.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qline.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qlinkedlist.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmargins.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qmessageauthenticationcode.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qqueue.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qrect.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qsize.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qscopedvaluerollback.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qstack.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtextboundaryfinder.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtimeline.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtimezone.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qversionnumber.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qxmlstream.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtCore\qtcoreversion.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsql.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqldatabase.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqldriver.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqldriverplugin.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlerror.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlfield.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlindex.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlrecord.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlquery.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlresult.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlquerymodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlrelationaldelegate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qitemdelegate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qwidget.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qwindowdefs.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qwindowdefs_win.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpaintdevice.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpalette.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qcolor.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qrgb.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qrgba64.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qbrush.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qmatrix.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpolygon.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qregion.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qtransform.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpainterpath.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qimage.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpixelformat.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qpixmap.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qfont.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qfontmetrics.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qfontinfo.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qsizepolicy.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qcursor.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qkeysequence.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qevent.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qvector2d.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qtouchdevice.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qlistview.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtWidgets\qcombobox.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqlrelationaltablemodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qsqltablemodel.h \
+		..\..\..\..\QT\5.7\msvc2015_64\include\QtSql\qtsqlversion.h
 
 ####### Install
 

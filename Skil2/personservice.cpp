@@ -1,7 +1,6 @@
 #include "personservice.h"
 #include "dataaccess.h"
 #include <algorithm>
-#include "dataaccess.h"
 
 PersonService::PersonService()
 {
@@ -47,7 +46,7 @@ vector<Person> PersonService::SearchName(vector <Person> list, string searchName
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
         if (list[i].getName().find(searchName) != string::npos)
         {
@@ -61,7 +60,7 @@ vector<Person> PersonService::SearchGender(vector <Person> list, char searchGend
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getGender() == searchGender)
@@ -76,7 +75,7 @@ vector<Person> PersonService::SearchBirthYear(vector<Person> list, int searchBir
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getBirthYear() == searchBirth)
@@ -91,7 +90,7 @@ vector<Person> PersonService::SearchDeathYear(vector<Person> list, int searchDea
 {
     vector <Person> newList;
 
-    for (int i = 0; i < list.size(); i++)
+    for (size_t i = 0; i < list.size(); i++)
     {
 
         if (list[i].getDeathYear() == searchDeath)
@@ -106,27 +105,19 @@ vector<Person> PersonService::serviceToVector(vector<Person> person)
 {
     return _access.fillVector(person);
 }
-void PersonService::serviceToFile(vector<Person> person)
-{
-     _access.writeVectorToFile(person);
-}
-void PersonService::serviceToFile(string name, char gender, int birthYear, int deathYear)
-{
-    _access.writeToFile(name, gender, birthYear, deathYear);
-}
 vector<Person> PersonService::deleteDublicateVector(vector<Person> Persons)
 {
-        for ( size_t i = 0; i < Persons.size() ; i++ )
+    for ( size_t i = 0; i < Persons.size() ; i++ )
+    {
+        for ( size_t j = 0; j < Persons.size() ; j++ )
         {
-            for ( size_t j = 0; j < Persons.size() ; j++ )
+            if(( Persons.at(i).getName() == Persons.at(j).getName() ) && (!( i == j )))
             {
-                if(( Persons.at(i).getName() == Persons.at(j).getName() ) && (!( i == j )))
-                {
-                    Persons.erase (Persons.begin()+i);
-                }
+                Persons.erase (Persons.begin()+i);
             }
         }
-        return Persons;
+    }
+    return Persons;
 }
 void PersonService::add(string name, char gender, int birthYear, int deathYear)
 {
@@ -151,27 +142,9 @@ void PersonService::editDeathYear(string trueName, int deathYear)
 void PersonService::deletePerson(string trueName)
 {
     _access.deletePerson(trueName);
-}vector<Computer> PersonService::name()
-{
-    return _access.dataType();
 }
-vector<Computer> PersonService::reName()
+/*
+void PersonService::linkPersonToComputer(int PersonID, int ComputerID)
 {
-    return _access.dataReType();
-}
-vector<Computer> PersonService::type()
-{
-    return _access.dataType();
-}
-vector<Computer> PersonService::reType()
-{
-    return _access.dataReType();
-}
-vector<Computer> PersonService::buildyear()
-{
-    return _access.dataType();
-}
-vector<Computer> PersonService::reBuildyear()
-{
-    return _access.dataReType();
-}
+    _access.linkPersonToComputer();
+}*/

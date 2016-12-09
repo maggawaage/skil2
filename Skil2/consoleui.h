@@ -12,22 +12,25 @@ public:
 
     void run();
     void writePerson();
-    void writeComputer();
     void sortItPerson();
-    void sortItComputer();
     void searchPerson();
-    void searchComputer();
     void deleteFromFilePerson();
-    void deleteFromFileComputer();
     void editPerson();
-    void editComputer();
     void displayVector(vector<Person> printIt, int x = 0);
-    void displayVectorComputer(vector<Computer> printIt, int x = 0);
+
+    void writeComputer();
+    void sortItComputer();
+    void searchComputer();
+    void deleteFromFileComputer();
+    void editComputer();
+    void displayComputerVector( vector<Computer> printIt, int x = 0 );
+    void about();
     void teamLogo();
 private:
-    //ComputerService _Cservice;
+    ComputerService _Cservice;
+    Computer _COP;
     PersonService _service;
-    Person PER;
+    Person _PER;
 };
 
 #endif // CONSOLEUI_H

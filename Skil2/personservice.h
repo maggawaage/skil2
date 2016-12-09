@@ -19,12 +19,7 @@ public:
     vector<Person> reGender();
     vector<Person> death();
     vector<Person> reDeath();
-    vector<Computer> name();
-    vector<Computer> reName();
-    vector<Computer> type();
-    vector<Computer> reType();
-    vector<Computer> buildyear();
-    vector<Computer> reBuildyear();
+
 
     vector<Person> serviceToVector(vector<Person> person);
     void serviceToFile(string name, char gender, int birthYear, int deathYear);
@@ -44,7 +39,6 @@ public:
     void deletePerson(string trueName);
 
 private:
-    //vector<Person> alpha();
     DataAccess _access;
 
 };
