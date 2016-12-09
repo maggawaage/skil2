@@ -106,7 +106,7 @@ vector<Person> DataAccess::DataReDeath()
 void DataAccess::editName(string trueName, string name)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.prepare("UPDATE Persons SET Name = :name WHERE ID = Name = :Name;");
+    query.prepare("UPDATE Persons SET Name = :name WHERE Name = :Name;");
 
     query.bindValue(":name", QString::fromStdString(name));
     query.bindValue(":Name",QString::fromStdString(trueName));
