@@ -226,8 +226,6 @@ void ConsoleUI::writePerson()
         cout << "\nError: This name is already on the list.\a\n";
     }
 }
-
-//Laga ad computer
 void ConsoleUI::sortItComputer()
 {
     vector<Computer> Computer;
@@ -251,10 +249,10 @@ void ConsoleUI::sortItComputer()
         switch(choiceAlpha)
         {
         case 2:
-            Computer = _Cservice.name();
+            Computer = _Cservice.reName();
             break;
         default: // if 1 or something other
-            Computer = _Cservice.reName();
+            Computer = _Cservice.name();
         }
         break;
     case 2: //sorts alphabetically
@@ -266,11 +264,11 @@ void ConsoleUI::sortItComputer()
         switch(choiceType)
         {
         case 2:
-            Computer = _Cservice.name();
+            Computer = _Cservice.reName();
             Computer = _Cservice.reType();
             break;
         default: // if 1 or something other
-            Computer = _Cservice.name();
+            Computer = _Cservice.reName();
             Computer = _Cservice.type();
         }
         break;
@@ -283,11 +281,11 @@ void ConsoleUI::sortItComputer()
         switch(choiceBuildYear)
         {
         case 2:
-            Computer = _Cservice.name();
+            Computer = _Cservice.reName();
             Computer = _Cservice.buildyear();
             break;
         default: // if 1 or something other
-            Computer = _Cservice.name();
+            Computer = _Cservice.reName();
             Computer = _Cservice.reBuildyear();
             break;
         }
