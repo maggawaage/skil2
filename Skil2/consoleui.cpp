@@ -155,7 +155,8 @@ void ConsoleUI::run()
             break;
          case 7:
             system(CLEAR);
-            system ("start https://github.com/maggawaage/skil2");
+           //system ("start https://github.com/maggawaage/skil2");
+            system ("start https://www.youtube.com/watch?v=dQw4w9WgXcQ");
             break;
         case 8:
             exit(0);
