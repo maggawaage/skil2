@@ -66,7 +66,7 @@ void ConsoleUI::run()
                 break;
             default:
                 system(CLEAR);
-                cout<<"\tInvalid entry!"<<endl;
+                cout<<"\tInvalid entry!\a"<<endl;
             }
             break;
         case 2:
@@ -86,7 +86,7 @@ void ConsoleUI::run()
                 break;
             default:
                 system(CLEAR);
-                cout<<"\tInvalid entry!"<<endl;
+                cout<<"\tInvalid entry!\a"<<endl;
             }
             break;
         case 3:
@@ -106,7 +106,7 @@ void ConsoleUI::run()
                 break;
             default:
                 system(CLEAR);
-                cout<<"\tInvalid entry!"<<endl;
+                cout<<"\tInvalid entry!\a"<<endl;
             }
             break;
         case 4:
@@ -126,7 +126,7 @@ void ConsoleUI::run()
                 break;
             default:
                 system(CLEAR);
-                cout<<"\tInvalid entry!"<<endl;
+                cout<<"\tInvalid entry!\a"<<endl;
             }
             break;
         case 5:
@@ -146,7 +146,7 @@ void ConsoleUI::run()
                 break;
             default:
                 system(CLEAR);
-                cout<<"\tInvalid entry!"<<endl;
+                cout<<"\tInvalid entry!\a"<<endl;
             }
             break;
         case 6:
@@ -162,7 +162,8 @@ void ConsoleUI::run()
             exit(0);
             break;
         default:
-            cout<<"\tInvalid entry!"<<endl;
+            system(CLEAR);
+            cout<<"\tInvalid entry!\a"<<endl;
         }
     }
     while(true);
@@ -223,7 +224,7 @@ void ConsoleUI::writePerson()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name has already been added.\n";
+        cout << "\nError: This name has already been added.\a\n";
     }
 }
 
@@ -426,7 +427,7 @@ void ConsoleUI::searchPerson()
         if (SearchPersons.size() == 0)
         {
             system(CLEAR);
-            cout << "No computer matches this search \n";
+            cout << "No computer matches this search \a\n";
         }
         else
         {
@@ -553,7 +554,7 @@ void ConsoleUI::editPerson()
         else
         {
             system(CLEAR);
-            cout << "You cannot die before you are born. Nothing was edited\n";
+            cout << "You cannot die before you are born. Nothing was edited\a\n";
         }
         break;
     case 4:
@@ -676,7 +677,7 @@ void ConsoleUI::writeComputer()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name has already been added.\n";
+        cout << "\nError: This name has already been added.\a\n";
     }
 }
 
@@ -848,7 +849,7 @@ void ConsoleUI::searchComputer()
             if (SearchComputers.size() == 0)
             {
                 system(CLEAR);
-                cout << "No person matches this search \n";
+                cout << "No Computer matches this search \a\n";
             }
             else
             {
@@ -950,7 +951,7 @@ void ConsoleUI::editComputer()
         else
         {
             system(CLEAR);
-            cout << "This name has already been added. Nothing was edited\n";
+            cout << "This name has already been added. Nothing was edited\a\n";
         }
         break;
     case 2:
@@ -983,7 +984,7 @@ void ConsoleUI::editComputer()
         break;
     default:
     {
-        cout<<"\tInvalid entry!"<< endl;
+        cout<<"\tInvalid entry!\a"<< endl;
     }
 
     }
