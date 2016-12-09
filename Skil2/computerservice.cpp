@@ -6,32 +6,6 @@ ComputerService::ComputerService()
 {
 
 }
-/*
-vector<Computer> ComputerService::Alpha()
-{
-    return _access.DataComputerAlpha();
-}
-vector<Computer> ComputerService::reAlpha()
-{
-    return _access.DataComputerReAlpha();
-}
-vector<Computer> ComputerService::buildYear()
-{
-    return _access.DataComputerBuildYear();
-}
-vector<Computer> ComputerService::reBuildYear()
-{
-    return _access.DataComputerReBuildYear();
-}
-vector<Computer> ComputerService::type()
-{
-    return _access.DataComputerType();
-}
-vector<Computer> ComputerService::reType()
-{
-    return _access.DataComputerReType();
-}
-*/
 vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
 {
     vector <Computer> newList;
@@ -143,14 +117,11 @@ vector<Computer> ComputerService::reBuildyear()
     return _access.computerReBuildYear();
 }
 
-
 vector<Person> ComputerService::getPersonsConnectedToComp(string computerName)
 {
     //TODO: Find id of computer with given name
     _access.getComputerIdByName(computerName);
-    int id;
+    int id = 0;
     return _access.getPersonsConnectedToComputers(id);
 }
-
-
 

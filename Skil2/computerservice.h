@@ -13,13 +13,6 @@ class ComputerService
 
 public:
     ComputerService();
-
-    //vector<Computer> Alpha();
-    //vector<Computer> reAlpha();
-    //vector<Computer> buildYear();
-    //vector<Computer> reBuildYear();
-    //vector<Computer> type();
-    //vector<Computer> reType();
     vector<Computer> name();
     vector<Computer> reName();
     vector<Computer> type();

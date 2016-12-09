@@ -166,9 +166,17 @@ void ConsoleUI::run()
             about();
             break;
          case 7:
-            system(CLEAR);
-            system ("start https://github.com/maggawaage/skil2");
-            break;
+            #ifdef _WIN32
+            {
+                system(CLEAR);
+                system ("start https://github.com/maggawaage/skil2");
+            }
+            #else //In any other OS
+            {
+                system(CLEAR);
+                system ("open https://github.com/maggawaage/skil2");
+            }
+            #endif
         case 8:
             exit(0);
             break;
@@ -238,72 +246,44 @@ void ConsoleUI::writePerson()
         cout << "\nError: This name is already on the list.\a\n";
     }
 }
-void ConsoleUI::sortItComputer()
+void ConsoleUI::writeComputer()
 {
-    vector<Computer> Computer;
-    int choice = 0;
-    cout << "How would you like to sort?" << endl;
-    cout << "\t1. By name  \n";
-    cout << "\t2. By type \n";
-    cout << "\t3. By buildyear \n";
-    cout << endl;
-    cout << "Your choice: ";
-    cin >> choice;
+    string name;
+    string type;
+    int buildYear;
 
-    switch(choice)
+    //Getting valid name, type and build year
+    while (name.empty())
     {
-    case 1: //sorts alphabetically
-        cout << "\t1. From A-Z  \n";
-        cout << "\t2. From Z-A \n";
-        cout << "Your choice: ";
-        int choiceAlpha;
-        cin >> choiceAlpha;
-        switch(choiceAlpha)
-        {
-        case 2:
-            Computer = _Cservice.reName();
-            break;
-        default: // if 1 or something other
-            Computer = _Cservice.name();
-        }
-        break;
-    case 2: //sorts alphabetically
-        cout << "\t1. From A-Z  \n";
-        cout << "\t2. From Z-A \n";
-        cout << "Your choice: ";
-        int choiceType;
-        cin >> choiceType;
-        switch(choiceType)
-        {
-        case 2:
-            Computer = _Cservice.reName();
-            Computer = _Cservice.reType();
-            break;
-        default: // if 1 or something other
-            Computer = _Cservice.reName();
-            Computer = _Cservice.type();
-        }
-        break;
-    case 3:
-        cout << "\t1. From highest to lowest.  \n";
-        cout << "\t2. From lowest to highest. \n";
-        cout << "Your choice: ";
-        int choiceBuildYear;
-        cin >> choiceBuildYear;
-        switch(choiceBuildYear)
-        {
-        case 2:
-            Computer = _Cservice.reName();
-            Computer = _Cservice.buildyear();
-            break;
-        default: // if 1 or something other
-            Computer = _Cservice.reName();
-            Computer = _Cservice.reBuildyear();
-            break;
-        }
-        break;
+        cout << "Name(English characters only): ";
+        cin.ignore(10000,'\n');
+        getline(cin, name);
     }
-    displayComputerVector(Computer);
+    while (type.empty())
+    {
+        cout << "Type(English characters only): ";
+        getline(cin, type);
+    }
+    cout << "Build year: ";
+    while(!(cin>>buildYear))
+    {
+        cout << "Enter build year only in numbers(YYYY): ";
+        cin.ignore(10000,'\n');
+    }
+    //Check if name is already in file if not move to file
+    vector<Computer> Computers;
+    Computers = _Cservice.serviceToVector(Computers);
+    if(_COP.checkIfSame(Computers, name))
+    {
+        _Cservice.add(name, type, buildYear);
+        system(CLEAR);
+        cout << "\nAdded the computer\n";
+    }
+    else
+    {
+        system(CLEAR);
+        cout << "\nError: This name is already on the list.\a\n";
+    }
 }
 
 void ConsoleUI::writeConnection()
@@ -424,7 +404,73 @@ void ConsoleUI::sortItPerson()
     system(CLEAR);
     displayVector(Persons);
 }
+void ConsoleUI::sortItComputer()
+{
+    vector<Computer> Computer;
+    int choice = 0;
+    cout << "How would you like to sort?" << endl;
+    cout << "\t1. By name  \n";
+    cout << "\t2. By type \n";
+    cout << "\t3. By buildyear \n";
+    cout << endl;
+    cout << "Your choice: ";
+    cin >> choice;
 
+    switch(choice)
+    {
+    case 1: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceAlpha;
+        cin >> choiceAlpha;
+        switch(choiceAlpha)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.name();
+        }
+        break;
+    case 2: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceType;
+        cin >> choiceType;
+        switch(choiceType)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            Computer = _Cservice.reType();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.reName();
+            Computer = _Cservice.type();
+        }
+        break;
+    case 3:
+        cout << "\t1. From highest to lowest.  \n";
+        cout << "\t2. From lowest to highest. \n";
+        cout << "Your choice: ";
+        int choiceBuildYear;
+        cin >> choiceBuildYear;
+        switch(choiceBuildYear)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            Computer = _Cservice.buildyear();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.reName();
+            Computer = _Cservice.reBuildyear();
+            break;
+        }
+        break;
+    }
+    displayComputerVector(Computer);
+}
 void ConsoleUI::searchPerson()
 {
     vector<Person> SearchPersons;
@@ -557,241 +603,6 @@ void ConsoleUI::searchPerson()
 
     }
 }
-
-void ConsoleUI::deleteFromFilePerson()
-{
-    vector<Person> Persons;
-    Persons = _service.serviceToVector(Persons);
-    int id;
-    string trueName;
-    displayVector(Persons, 1);
-
-    cout << "\nEnter the ID of the person you want to delete: ";
-    while(!(cin >> id) | (id < 1) | (id > (int)Persons.size()))
-    {
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout << "Enter only corresponding numbers: ";
-    }
-
-    trueName = Persons.at(id-1).getName();
-    _service.deletePerson(trueName);
-    Persons.clear();
-    Persons = _service.serviceToVector(Persons);
-    system(CLEAR);
-    displayVector(Persons);
-}
-
-void ConsoleUI::editPerson()
-{
-    string newName;
-    char newGender;
-    int newYear;
-    vector<Person> Persons;
-    Persons = _service.serviceToVector(Persons);
-    int id;
-    string trueName;
-    //Couts vector with ID
-    displayVector( Persons, 1 );
-
-    cout << "\nEnter the ID of the person you want to edit? ";
-    while(!(cin >> id) | (id < 1) | (id > (int)Persons.size()))
-    {
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout << "Enter only corresponding id: ";
-    }
-
-    trueName = Persons.at(id-1).getName();
-
-    cout << "What do you want to edit?\n "
-         <<"\t 1. Name \n"
-         <<"\t 2. Gender \n"
-         <<"\t 3. Year of birth \n"
-         <<"\t 4. Year of death  \n";
-
-    //What to change
-    cout << "Your choice: ";
-    int editChoice;
-    while ( !(cin >> editChoice) | ( editChoice < 1 ) | ( editChoice > 4 ) )
-    {
-        cin.clear();
-        cin.ignore(10000,'\n');
-        cout << "Enter only correspondings number from 1-4 ";
-    }
-    switch(editChoice)
-    {
-    case 1:
-        cout << "Enter new name: ";
-        while (newName.empty())
-        {
-            cout << "Name(English characters only): ";
-            cin.ignore(10000,'\n');
-            getline(cin, newName);
-        }
-        if (_PER.checkIfSame(Persons, newName))
-        {
-            _service.editName(trueName, newName);
-        }
-        else
-        {
-            system(CLEAR);
-            cout << "This name is already on the list. Nothing was edited\n";
-        }
-        break;
-    case 2:
-        cout << "Enter new gender: ";
-        while(!(cin>>newGender) | !((newGender == 'm')| (newGender == 'f') ))
-        {
-            cin.clear();
-            cin.ignore(10000,'\n');
-            cout << "Enter only m for male or f for female: ";
-        }
-        _service.editGender(trueName, newGender);
-        break;
-    case 3:
-        cout << "Enter new year: ";
-        while(!(cin>>newYear))
-        {
-            cin.clear();
-            cin.ignore(10000,'\n');
-            cout << "Enter year only in numbers(YYYY): ";
-        }
-        if ( (newYear > Persons.at(id-1).getDeathYear()) | (Persons.at(id-1).getDeathYear() == 0) )
-        {
-            _service.editBirthYear(trueName, newYear);
-        }
-        else
-        {
-            system(CLEAR);
-            cout << "You cannot die before you are born. Nothing was edited\a\n";
-        }
-        break;
-    case 4:
-        cout << "Enter new year (if not dead enter 0): ";
-        while(!(cin>>newYear))
-        {
-            cin.clear();
-            cin.ignore(10000,'\n');
-            cout << "Enter year only in numbers(YYYY): ";
-        }
-        if ( (newYear > Persons.at(id-1).getDeathYear()) | ( newYear == 0 ) )
-        {
-            _service.editDeathYear(trueName, newYear);
-        }
-        else
-        {
-            system(CLEAR);
-            cout << "You cannot die before you are born. Nothing was edited\n";
-        }
-        break;
-    default:
-    {
-        cout<<"\tInvalid entry!"<< endl;
-    }
-
-    }
-    Persons.clear();
-    Persons = _service.serviceToVector(Persons);
-    displayVector(Persons);
-}
-
-void ConsoleUI::displayVector( vector<Person> printIt, int x )
-{
-    cout << "\n";
-    //Couts ID if you want
-    if (x == 1)
-    {
-        cout << "ID" << "\t";
-    }
-    cout << "Name"<< "\t\t\t" << "Gender" << "\t" << "Birth year";
-    cout.width(15);
-    cout <<"Year of death";
-    cout.width(15);
-    cout <<"Age when died" << endl;;
-    cout <<"========================================================================\n";
-
-    for(size_t i = 0; i < printIt.size(); i++)
-    {
-        //Couts ID number if you want
-        cout.setf(ios::left);
-        if (x == 1)
-        {
-            cout.width(8);
-            cout << i+1;
-        }
-        cout.width(24);
-        cout << printIt[i].getName();
-        if(printIt[i].getGender()=='m')
-        {
-            cout.width(8);
-            cout << "Male";
-        }
-        else
-        {
-            cout.width(8);
-            cout << "Female";
-        }
-        cout.width(12);
-        cout << printIt[i].getBirthYear();
-        if (!(printIt[i].getDeathYear() == 0))
-        {
-            cout.width(15);
-            cout << printIt[i].getDeathYear()
-                 << (printIt[i].getDeathYear() - printIt[i].getBirthYear()) << endl;;
-        }
-        else
-        {
-            cout.width(15);
-            cout << '-'
-                 << "-\n";
-        }
-    }
-}
-
-//---------COMPUTER
-
-void ConsoleUI::writeComputer()
-{
-    string name;
-    string type;
-    int buildYear;
-
-    //Getting valid name, type and build year
-    while (name.empty())
-    {
-        cout << "Name(English characters only): ";
-        cin.ignore(10000,'\n');
-        getline(cin, name);
-    }
-    while (type.empty())
-    {
-        cout << "Type(English characters only): ";
-        getline(cin, type);
-    }
-    cout << "Build year: ";
-    while(!(cin>>buildYear))
-    {
-        cout << "Enter build year only in numbers(YYYY): ";
-        cin.ignore(10000,'\n');
-    }
-    //Check if name is already in file if not move to file
-    vector<Computer> Computers;
-    Computers = _Cservice.serviceToVector(Computers);
-    if(_COP.checkIfSame(Computers, name))
-    {
-        _Cservice.add(name, type, buildYear);
-        system(CLEAR);
-        cout << "\nAdded the computer\n";
-    }
-    else
-    {
-        system(CLEAR);
-        cout << "\nError: This name is already on the list.\a\n";
-    }
-}
-
-//LAGA
 void ConsoleUI::searchComputer()
 {
     {
@@ -909,7 +720,29 @@ void ConsoleUI::searchComputer()
         }
     }
 }
+void ConsoleUI::deleteFromFilePerson()
+{
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    size_t id;
+    string trueName;
+    displayVector(Persons, 1);
 
+    cout << "\nEnter the ID of the person you want to delete: ";
+    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding numbers: ";
+    }
+
+    trueName = Persons.at(id-1).getName();
+    _service.deletePerson(trueName);
+    Persons.clear();
+    Persons = _service.serviceToVector(Persons);
+    system(CLEAR);
+    displayVector(Persons);
+}
 void ConsoleUI::deleteFromFileComputer()
 {
     vector<Computer> Computers;
@@ -933,7 +766,119 @@ void ConsoleUI::deleteFromFileComputer()
     system(CLEAR);
     displayComputerVector(Computers);
 }
+void ConsoleUI::editPerson()
+{
+    string newName;
+    char newGender;
+    int newYear;
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    size_t id;
+    string trueName;
+    //Couts vector with ID
+    displayVector( Persons, 1 );
 
+    cout << "\nEnter the ID of the person you want to edit? ";
+    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding id: ";
+    }
+
+    trueName = Persons.at(id-1).getName();
+
+    cout << "What do you want to edit?\n "
+         <<"\t 1. Name \n"
+         <<"\t 2. Gender \n"
+         <<"\t 3. Year of birth \n"
+         <<"\t 4. Year of death  \n";
+
+    //What to change
+    cout << "Your choice: ";
+    int editChoice;
+    while ( !(cin >> editChoice) | ( editChoice < 1 ) | ( editChoice > 4 ) )
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only correspondings number from 1-4 ";
+    }
+    switch(editChoice)
+    {
+    case 1:
+        cout << "Enter new name: ";
+        while (newName.empty())
+        {
+            cout << "Name(English characters only): ";
+            cin.ignore(10000,'\n');
+            getline(cin, newName);
+        }
+        if (_PER.checkIfSame(Persons, newName))
+        {
+            _service.editName(trueName, newName);
+        }
+        else
+        {
+            system(CLEAR);
+            cout << "This name is already on the list. Nothing was edited\n";
+        }
+        break;
+    case 2:
+        cout << "Enter new gender: ";
+        while(!(cin>>newGender) | !((newGender == 'm')| (newGender == 'f') ))
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout << "Enter only m for male or f for female: ";
+        }
+        _service.editGender(trueName, newGender);
+        break;
+    case 3:
+        cout << "Enter new year: ";
+        while(!(cin>>newYear))
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout << "Enter year only in numbers(YYYY): ";
+        }
+        if ( (newYear > Persons.at(id-1).getDeathYear()) | (Persons.at(id-1).getDeathYear() == 0) )
+        {
+            _service.editBirthYear(trueName, newYear);
+        }
+        else
+        {
+            system(CLEAR);
+            cout << "You cannot die before you are born. Nothing was edited\a\n";
+        }
+        break;
+    case 4:
+        cout << "Enter new year (if not dead enter 0): ";
+        while(!(cin>>newYear))
+        {
+            cin.clear();
+            cin.ignore(10000,'\n');
+            cout << "Enter year only in numbers(YYYY): ";
+        }
+        if ( (newYear > Persons.at(id-1).getDeathYear()) | ( newYear == 0 ) )
+        {
+            _service.editDeathYear(trueName, newYear);
+        }
+        else
+        {
+            system(CLEAR);
+            cout << "You cannot die before you are born. Nothing was edited\n";
+        }
+        break;
+    default:
+    {
+        cout<<"\tInvalid entry!"<< endl;
+    }
+
+    }
+    Persons.clear();
+    Persons = _service.serviceToVector(Persons);
+    displayVector(Persons);
+}
 void ConsoleUI::editComputer()
 {
     string newName;
@@ -1029,7 +974,58 @@ void ConsoleUI::editComputer()
 
     }
 }
+void ConsoleUI::displayVector( vector<Person> printIt, int x )
+{
+    cout << "\n";
+    //Couts ID if you want
+    if (x == 1)
+    {
+        cout << "ID" << "\t";
+    }
+    cout << "Name"<< "\t\t\t" << "Gender" << "\t" << "Birth year";
+    cout.width(15);
+    cout <<"Year of death";
+    cout.width(15);
+    cout <<"Age when died" << endl;;
+    cout <<"========================================================================\n";
 
+    for(size_t i = 0; i < printIt.size(); i++)
+    {
+        //Couts ID number if you want
+        cout.setf(ios::left);
+        if (x == 1)
+        {
+            cout.width(8);
+            cout << i+1;
+        }
+        cout.width(24);
+        cout << printIt[i].getName();
+        if(printIt[i].getGender()=='m')
+        {
+            cout.width(8);
+            cout << "Male";
+        }
+        else
+        {
+            cout.width(8);
+            cout << "Female";
+        }
+        cout.width(12);
+        cout << printIt[i].getBirthYear();
+        if (!(printIt[i].getDeathYear() == 0))
+        {
+            cout.width(15);
+            cout << printIt[i].getDeathYear()
+                 << (printIt[i].getDeathYear() - printIt[i].getBirthYear()) << endl;;
+        }
+        else
+        {
+            cout.width(15);
+            cout << '-'
+                 << "-\n";
+        }
+    }
+}
 void ConsoleUI::displayComputerVector( vector<Computer> printIt, int x )
 {
     cout << "\n";
@@ -1071,7 +1067,6 @@ void ConsoleUI::displayComputerVector( vector<Computer> printIt, int x )
     }
     cout << endl;
 }
-
 void ConsoleUI::about()
 {
     cout << endl <<"\tABOUT" << endl

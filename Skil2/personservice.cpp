@@ -15,7 +15,6 @@ vector<Person> PersonService::reAlpha()
 {
     return _access.DataReAlpha();
 }
-
 vector<Person> PersonService::year()
 {
     return _access.DataYear();
@@ -24,7 +23,6 @@ vector<Person> PersonService::reYear()
 {
     return _access.DataReYear();
 }
-
 vector<Person> PersonService::gender()
 {
     return _access.DataGender();
@@ -33,7 +31,6 @@ vector<Person> PersonService::reGender()
 {
     return _access.DataReGender();
 }
-
 vector<Person> PersonService::death()
 {
     return _access.DataDeath();
@@ -155,7 +152,7 @@ vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
     //TODO: Find ID of person by using their name
     //int myFunction(string name)
     _access.getPersonIdByName(personName);
-    int id;
+    int id = 0;
     return _access.getComputersConnectedToPersons(id);
 }
 
