@@ -48,7 +48,9 @@ public:
     void editBuildYear(string trueName, int buildYear);
     void deleteComputer(string trueName);
 
-    void linkPersonTwoComputer(int Person_ID, int Computer_ID);
+    void linkPersonToComputer(int Person_ID, int Computer_ID);
+    vector<Person> joinPersonWithComputer();
+    vector<Computer> joinComputerWithPerson();
 
 private:
     QSqlDatabase _runningDB;

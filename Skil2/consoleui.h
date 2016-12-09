@@ -12,13 +12,17 @@ public:
 
     void run();
     void writePerson();
+    void writeComputer();
+    void writeConnection();
     void sortItPerson();
+    void personLinkedToComputer();//eftir að útfæra
+    void computerLinkedToPerson();//Eftir að útfæra
     void searchPerson();
     void deleteFromFilePerson();
     void editPerson();
     void displayVector(vector<Person> printIt, int x = 0);
 
-    void writeComputer();
+
     void sortItComputer();
     void searchComputer();
     void deleteFromFileComputer();

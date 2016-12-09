@@ -147,5 +147,10 @@ void PersonService::deletePerson(string trueName)
 
 void PersonService::linkPersonToComputer(int PersonID, int ComputerID)
 {
-    _access.linkPersonToComputer();
+    _access.linkPersonToComputer(PersonID, ComputerID);
+}
+
+vector<Person> PersonService::JoinPersonWithComputer()
+{
+    return _access.joinPersonWithComputer();
 }

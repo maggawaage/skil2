@@ -34,6 +34,9 @@ public:
     void editBuildYear(string trueName, int buildYear);
     void deleteComputer(string trueName);
 
+    vector<Computer> JoinComputerWithPerson();
+
+
 private:
     DataAccess _access;
 

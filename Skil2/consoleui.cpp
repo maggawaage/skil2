@@ -53,6 +53,7 @@ void ConsoleUI::run()
             cout << "Do you want to add a person or a computer?\n";
             cout << "\t1. Add person  \n";
             cout << "\t2. Add computer \n";
+            cout << "\t3. Add connection \n";
             cout << "Your choice: ";
             int writeChoice;
             cin >> writeChoice;
@@ -64,6 +65,9 @@ void ConsoleUI::run()
             case 2:
                 writeComputer();
                 break;
+            case 3:
+                writeConnection();//Add
+                break;
             default:
                 system(CLEAR);
                 cout<<"\tInvalid entry!\a"<<endl;
@@ -73,6 +77,8 @@ void ConsoleUI::run()
             cout << "Do you want to print out a list of person or a computer?\n";
             cout << "\t1. Print out person  \n";
             cout << "\t2. Print out computer \n";
+            cout << "\t3. Print list of persons connected to computer/s \n";
+            cout << "\t4. Print list of computers connected to person/s \n";
             cout << "Your choice: ";
             int sortItChoice;
             cin >> sortItChoice;
@@ -83,6 +89,12 @@ void ConsoleUI::run()
                 break;
             case 2:
                 sortItComputer();
+                break;
+            case 3:
+                //personLinkedToComputer();
+                break;
+            case 4:
+                //computerLinkedToComputer();
                 break;
             default:
                 system(CLEAR);
@@ -226,6 +238,33 @@ void ConsoleUI::writePerson()
         system(CLEAR);
         cout << "\nError: This name is already on the list.\a\n";
     }
+}
+
+
+void ConsoleUI::writeConnection()
+{
+    //má bæta:
+    //checka á inputinu
+    // ekki neyða notandann til að vita hvaða id hann þarf, sýnið honum t.d. listann með id's
+
+    cout << "Enter the ID of the person you would like to connect\n";
+    int pID;
+    cin >> pID;
+    cout << "Enter the ID of the computer you would like to connect\n";
+    int cID;
+    cin >> cID;
+    _service.linkPersonToComputer(pID, cID);
+
+}
+
+void ConsoleUI::personLinkedToComputer()//eftir að útfæra
+{
+    _service.JoinPersonWithComputer();
+}
+
+void ConsoleUI::computerLinkedToPerson()//Eftir að útfæra
+{
+    _Cservice.JoinComputerWithPerson();
 }
 
 void ConsoleUI::sortItPerson()
@@ -457,7 +496,7 @@ void ConsoleUI::deleteFromFilePerson()
     displayVector(Persons, 1);
 
     cout << "\nEnter the ID of the person you want to delete: ";
-    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
+    while(!(cin >> id) | (id < 1) | (id > (int)Persons.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
@@ -485,7 +524,7 @@ void ConsoleUI::editPerson()
     displayVector( Persons, 1 );
 
     cout << "\nEnter the ID of the person you want to edit? ";
-    while(!(cin >> id) | (id < 1) | (id > Persons.size()))
+    while(!(cin >> id) | (id < 1) | (id > (int)Persons.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
@@ -879,7 +918,7 @@ void ConsoleUI::deleteFromFileComputer()
     displayComputerVector(Computers, 1);
 
     cout << "\nEnter the ID of the Computer you want to delete: ";
-    while(!(cin >> id) | (id < 1) | (id > Computers.size()))
+    while(!(cin >> id) | (id < 1) | (id > (int)Computers.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
@@ -907,7 +946,7 @@ void ConsoleUI::editComputer()
     displayComputerVector( Computers, 1 );
 
     cout << "\nEnter the ID of the person you want to edit? ";
-    while(!(cin >> id) | (id < 1) | (id > Computers.size()))
+    while(!(cin >> id) | (id < 1) | (id > (int)Computers.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');

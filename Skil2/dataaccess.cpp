@@ -263,13 +263,32 @@ void DataAccess::deleteComputer(string trueName)
     query.exec();
 }
 
-void DataAccess::linkPersonTwoComputer(int Person_ID, int Computer_ID)
+void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.prepare("INSERT INTO CID_PID_LINK (Person_ID, Computer_ID) "
                   "VALUES (?, ?)");
-    query.addBindValue(Person_ID);
-    query.addBindValue(Computer_ID);
+    query.addBindValue(PersonID);
+    query.addBindValue(ComputerID);
     query.exec();
+}
+
+
+vector<Person> DataAccess::joinPersonWithComputer()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("SELECT P.Name, C.ID, C.Name, C.Type FROM Computers C"
+               "INNER JOIN CID_PID_LINK L ON L.Computer_ID = C.ID"
+               "INNER JOIN Persons P ON P.ID = L.Person_ID");
+    return parseLine(query);
+}
+
+vector<Computer> DataAccess::joinComputerWithPerson()
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.exec("SELECT C.Name, P.ID, P.Name, P.Gender, P.BirthYear, P.DeathYear FROM Persons P"
+               "INNER JOIN CID_PID_LINK L ON L.Person_ID = P.ID"
+               "INNER JOIN Computers C ON C.ID = L.Computer_ID");
+    return ParseLine(query);
 }
 

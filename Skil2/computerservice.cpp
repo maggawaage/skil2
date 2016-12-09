@@ -116,3 +116,10 @@ void ComputerService::deleteComputer(string trueName)
 {
     _access.deleteComputer(trueName);
 }
+vector<Computer> ComputerService::JoinComputerWithPerson()
+{
+    return _access.joinComputerWithPerson();
+}
+
+
+
