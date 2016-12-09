@@ -154,9 +154,17 @@ void ConsoleUI::run()
             about();
             break;
          case 7:
-            system(CLEAR);
-            system ("start https://github.com/maggawaage/skil2");
-            break;
+            #ifdef _WIN32
+            {
+                system(CLEAR);
+                system ("start https://github.com/maggawaage/skil2");
+            }
+            #else //In any other OS
+            {
+                system(CLEAR);
+                system ("open https://github.com/maggawaage/skil2");
+            }
+            #endif
         case 8:
             exit(0);
             break;
