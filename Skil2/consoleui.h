@@ -9,23 +9,22 @@ class ConsoleUI
 {
 public:
     ConsoleUI();
-
     void run();
     void writePerson();
-    void sortItPerson();
-    void searchPerson();
-    void deleteFromFilePerson();
-    void editPerson();
-    void displayVector(vector<Person> printIt, int x = 0);
-
     void writeComputer();
+    void sortItPerson();
     void sortItComputer();
+    void searchPerson();
     void searchComputer();
+    void deleteFromFilePerson();
     void deleteFromFileComputer();
+    void editPerson();
     void editComputer();
+    void displayVector(vector<Person> printIt, int x = 0);
     void displayComputerVector( vector<Computer> printIt, int x = 0 );
     void about();
     void teamLogo();
+
 private:
     ComputerService _Cservice;
     Computer _COP;

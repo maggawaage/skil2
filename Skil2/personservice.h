@@ -20,7 +20,6 @@ public:
     vector<Person> death();
     vector<Person> reDeath();
 
-
     vector<Person> serviceToVector(vector<Person> person);
     void serviceToFile(string name, char gender, int birthYear, int deathYear);
     void serviceToFile(vector<Person> person);

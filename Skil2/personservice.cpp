@@ -15,7 +15,6 @@ vector<Person> PersonService::reAlpha()
 {
     return _access.DataReAlpha();
 }
-
 vector<Person> PersonService::year()
 {
     return _access.DataYear();
@@ -24,7 +23,6 @@ vector<Person> PersonService::reYear()
 {
     return _access.DataReYear();
 }
-
 vector<Person> PersonService::gender()
 {
     return _access.DataGender();
@@ -33,7 +31,6 @@ vector<Person> PersonService::reGender()
 {
     return _access.DataReGender();
 }
-
 vector<Person> PersonService::death()
 {
     return _access.DataDeath();
