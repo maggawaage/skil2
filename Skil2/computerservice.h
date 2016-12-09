@@ -14,12 +14,18 @@ class ComputerService
 public:
     ComputerService();
 
-    vector<Computer> Alpha();
-    vector<Computer> reAlpha();
-    vector<Computer> buildYear();
-    vector<Computer> reBuildYear();
+    //vector<Computer> Alpha();
+    //vector<Computer> reAlpha();
+    //vector<Computer> buildYear();
+    //vector<Computer> reBuildYear();
+    //vector<Computer> type();
+    //vector<Computer> reType();
+    vector<Computer> name();
+    vector<Computer> reName();
     vector<Computer> type();
     vector<Computer> reType();
+    vector<Computer> buildyear();
+    vector<Computer> reBuildyear();
 
     static vector<Computer> SearchName(vector<Computer> list, string searchName);
     static vector<Computer> SearchType(vector<Computer> list, string searchType);
@@ -34,7 +40,7 @@ public:
     void editBuildYear(string trueName, int buildYear);
     void deleteComputer(string trueName);
 
-    vector<Computer> JoinComputerWithPerson();
+    vector<Person> getPersonsConnectedToComp(string computerName);
 
 
 private:

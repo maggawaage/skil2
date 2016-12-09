@@ -42,7 +42,6 @@ vector<Person> PersonService::reDeath()
 {
     return _access.DataReDeath();
 }
-
 vector<Person> PersonService::SearchName(vector <Person> list, string searchName)
 {
     vector <Person> newList;
@@ -145,12 +144,19 @@ void PersonService::deletePerson(string trueName)
     _access.deletePerson(trueName);
 }
 
-void PersonService::linkPersonToComputer(int PersonID, int ComputerID)
+
+void PersonService::linkPersonToComputer(int PersonID, int ComputerID) //insert into
 {
     _access.linkPersonToComputer(PersonID, ComputerID);
 }
 
-vector<Person> PersonService::JoinPersonWithComputer()
+vector<Computer> PersonService::getComputersConnectedToPerson(string personName)
 {
-    return _access.joinPersonWithComputer();
+    //TODO: Find ID of person by using their name
+    //int myFunction(string name)
+    _access.getPersonIdByName(personName);
+    int id;
+    return _access.getComputersConnectedToPersons(id);
 }
+
+

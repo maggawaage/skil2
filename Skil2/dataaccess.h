@@ -36,12 +36,12 @@ public:
     void addComputer(string name, string type, int buildYear);
 
     vector<Computer> ParseLine(QSqlQuery& query);
-    vector<Computer> DataComputerAlpha();
-    vector<Computer> DataComputerReAlpha();
-    vector<Computer> DataComputerType();
-    vector<Computer> DataComputerReType();
-    vector<Computer> DataComputerBuildYear();
-    vector<Computer> DataComputerReBuildYear();
+    vector<Computer> computerAlpha();
+    vector<Computer> computerReAlpha();
+    vector<Computer> computerType();
+    vector<Computer> computerReType();
+    vector<Computer> computerBuildYear();
+    vector<Computer> computerReBuildYear();
 
     void editComputerName(string trueName, string name);
     void editType(string trueName, string type);
@@ -49,8 +49,13 @@ public:
     void deleteComputer(string trueName);
 
     void linkPersonToComputer(int Person_ID, int Computer_ID);
-    vector<Person> joinPersonWithComputer();
-    vector<Computer> joinComputerWithPerson();
+
+    vector<Person> getPersonsConnectedToComputers(int id);
+    vector<Computer> getComputersConnectedToPersons(int id);
+
+    int getPersonIdByName(string name);
+    int getComputerIdByName(string name);
+
 
 private:
     QSqlDatabase _runningDB;

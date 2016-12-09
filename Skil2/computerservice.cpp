@@ -6,7 +6,7 @@ ComputerService::ComputerService()
 {
 
 }
-
+/*
 vector<Computer> ComputerService::Alpha()
 {
     return _access.DataComputerAlpha();
@@ -31,7 +31,7 @@ vector<Computer> ComputerService::reType()
 {
     return _access.DataComputerReType();
 }
-
+*/
 vector<Computer> ComputerService::SearchName(vector <Computer> list, string searchName)
 {
     vector <Computer> newList;
@@ -116,9 +116,40 @@ void ComputerService::deleteComputer(string trueName)
 {
     _access.deleteComputer(trueName);
 }
-vector<Computer> ComputerService::JoinComputerWithPerson()
+
+
+vector<Computer> ComputerService::name()
 {
-    return _access.joinComputerWithPerson();
+    return _access.computerAlpha();
+}
+vector<Computer> ComputerService::reName()
+{
+    return _access.computerReAlpha();
+}
+vector<Computer> ComputerService::type()
+{
+    return _access.computerType();
+}
+vector<Computer> ComputerService::reType()
+{
+    return _access.computerReType();
+}
+vector<Computer> ComputerService::buildyear()
+{
+    return _access.computerBuildYear();
+}
+vector<Computer> ComputerService::reBuildyear()
+{
+    return _access.computerReBuildYear();
+}
+
+
+vector<Person> ComputerService::getPersonsConnectedToComp(string computerName)
+{
+    //TODO: Find id of computer with given name
+    _access.getComputerIdByName(computerName);
+    int id;
+    return _access.getPersonsConnectedToComputers(id);
 }
 
 

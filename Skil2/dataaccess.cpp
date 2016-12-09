@@ -52,7 +52,6 @@ vector<Person> DataAccess::parseLine(QSqlQuery& query)
         char gender = query.value("Gender").toString().toDouble();
         int birthYear = query.value("BirthYear").toUInt();
         int deathYear = query.value("DeathYear").toUInt();
-        //Person _person(name, gender, birthYear, deathYear);
         readToVec.push_back(Person(name, birthYear, gender, deathYear));
     }
     return readToVec;
@@ -180,51 +179,49 @@ void DataAccess::addComputer(string name, string type, int buildYear)
     query.exec();
 }
 
-vector<Computer> DataAccess::ParseLine(QSqlQuery& line)
+vector<Computer> DataAccess::ParseLine(QSqlQuery& query)
 {
-    QSqlQuery query = QSqlQuery(_runningDB);
     vector<Computer> readToVec;
-    while(line.next())
+    while(query.next())
     {
         string name = query.value("Name").toString().toStdString();
         string type = query.value("Type").toString().toStdString();
         int buildYear = query.value("BuildYear").toUInt();
-        Computer _computer(name, type, buildYear);
         readToVec.push_back(Computer(name, type, buildYear));
     }
     return readToVec;
 }
-vector<Computer> DataAccess::DataComputerAlpha()
+vector<Computer> DataAccess::computerAlpha()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY Name ASC");
     return ParseLine(query);
 }
-vector<Computer> DataAccess::DataComputerReAlpha()
+vector<Computer> DataAccess::computerReAlpha()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY Name DESC");
     return ParseLine(query);
 }
-vector<Computer> DataAccess::DataComputerType()
+vector<Computer> DataAccess::computerType()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY Type ASC");
     return ParseLine(query);
 }
-vector<Computer> DataAccess::DataComputerReType()
+vector<Computer> DataAccess::computerReType()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY Type DESC");
     return ParseLine(query);
 }
-vector<Computer> DataAccess::DataComputerBuildYear()
+vector<Computer> DataAccess::computerBuildYear()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY BuildYear ASC");
     return ParseLine(query);
 }
-vector<Computer> DataAccess::DataComputerReBuildYear()
+vector<Computer> DataAccess::computerReBuildYear()
 {
     QSqlQuery query = QSqlQuery(_runningDB);
     query.exec("SELECT * FROM Computers ORDER BY BuildYear DESC");
@@ -263,6 +260,7 @@ void DataAccess::deleteComputer(string trueName)
     query.exec();
 }
 
+
 void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
@@ -274,21 +272,44 @@ void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
 }
 
 
-vector<Person> DataAccess::joinPersonWithComputer()
+vector<Person> DataAccess::getPersonsConnectedToComputers(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.exec("SELECT P.Name, C.ID, C.Name, C.Type FROM Computers C"
-               "INNER JOIN CID_PID_LINK L ON L.Computer_ID = C.ID"
-               "INNER JOIN Persons P ON P.ID = L.Person_ID");
+    query.exec("SELECT P.ID, P.Name, P.Gender, P.BirthYear, P.DeathYear"
+               "FROM Persons P"
+               "INNER JOIN CID_PID_LINK L ON L.Person_ID = P.ID"
+               "WHERE L.Computer_ID = ?");
+    query.addBindValue(id);
     return parseLine(query);
 }
 
-vector<Computer> DataAccess::joinComputerWithPerson()
+vector<Computer> DataAccess::getComputersConnectedToPersons(int id)
 {
     QSqlQuery query = QSqlQuery(_runningDB);
-    query.exec("SELECT C.Name, P.ID, P.Name, P.Gender, P.BirthYear, P.DeathYear FROM Persons P"
-               "INNER JOIN CID_PID_LINK L ON L.Person_ID = P.ID"
-               "INNER JOIN Computers C ON C.ID = L.Computer_ID");
+    query.exec("SELECT C.ID, C.Name, C.Type, C.BuildYear"
+               "FROM Computers C"
+               "INNER JOIN CID_PID_LINK L ON L.Computer_ID = C.ID"
+               "WHERE L.Person_ID = ?");
+    query.addBindValue(id);
     return ParseLine(query);
 }
 
+int DataAccess::getPersonIdByName(string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT P.ID"
+                  "FROM Persons P"
+                  "WHERE P.Name = ?");
+    query.addBindValue(QString::fromStdString(name));
+    return query.exec();
+}
+
+int DataAccess::getComputerIdByName(string name)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("SELECT C.ID"
+                  "FROM Computers C"
+                  "WHERE C.Name = ?");
+    query.addBindValue(QString::fromStdString(name));
+    return query.exec();
+}

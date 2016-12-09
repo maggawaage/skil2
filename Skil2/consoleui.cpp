@@ -91,10 +91,10 @@ void ConsoleUI::run()
                 sortItComputer();
                 break;
             case 3:
-                //personLinkedToComputer();
+                personLinkedToComputer();
                 break;
             case 4:
-                //computerLinkedToComputer();
+                computerLinkedToPerson();
                 break;
             default:
                 system(CLEAR);
@@ -167,8 +167,7 @@ void ConsoleUI::run()
             break;
          case 7:
             system(CLEAR);
-           //system ("start https://github.com/maggawaage/skil2");
-            system ("start https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+            system ("start https://github.com/maggawaage/skil2");
             break;
         case 8:
             exit(0);
@@ -239,7 +238,73 @@ void ConsoleUI::writePerson()
         cout << "\nError: This name is already on the list.\a\n";
     }
 }
+void ConsoleUI::sortItComputer()
+{
+    vector<Computer> Computer;
+    int choice = 0;
+    cout << "How would you like to sort?" << endl;
+    cout << "\t1. By name  \n";
+    cout << "\t2. By type \n";
+    cout << "\t3. By buildyear \n";
+    cout << endl;
+    cout << "Your choice: ";
+    cin >> choice;
 
+    switch(choice)
+    {
+    case 1: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceAlpha;
+        cin >> choiceAlpha;
+        switch(choiceAlpha)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.name();
+        }
+        break;
+    case 2: //sorts alphabetically
+        cout << "\t1. From A-Z  \n";
+        cout << "\t2. From Z-A \n";
+        cout << "Your choice: ";
+        int choiceType;
+        cin >> choiceType;
+        switch(choiceType)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            Computer = _Cservice.reType();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.reName();
+            Computer = _Cservice.type();
+        }
+        break;
+    case 3:
+        cout << "\t1. From highest to lowest.  \n";
+        cout << "\t2. From lowest to highest. \n";
+        cout << "Your choice: ";
+        int choiceBuildYear;
+        cin >> choiceBuildYear;
+        switch(choiceBuildYear)
+        {
+        case 2:
+            Computer = _Cservice.reName();
+            Computer = _Cservice.buildyear();
+            break;
+        default: // if 1 or something other
+            Computer = _Cservice.reName();
+            Computer = _Cservice.reBuildyear();
+            break;
+        }
+        break;
+    }
+    displayComputerVector(Computer);
+}
 
 void ConsoleUI::writeConnection()
 {
@@ -257,14 +322,20 @@ void ConsoleUI::writeConnection()
 
 }
 
+// Get all persons that are connected to one computer
 void ConsoleUI::personLinkedToComputer()//eftir að útfæra
 {
-    _service.JoinPersonWithComputer();
+    //TODO:  Send name of computer
+    string name;
+    _Cservice.getPersonsConnectedToComp(name);
 }
 
+// Get all Computers that are connected to a Person
 void ConsoleUI::computerLinkedToPerson()//Eftir að útfæra
 {
-    _Cservice.JoinComputerWithPerson();
+    //TODO: Send Name of person
+    string name;
+    _service.getComputersConnectedToPerson(name);
 }
 
 void ConsoleUI::sortItPerson()
@@ -721,76 +792,6 @@ void ConsoleUI::writeComputer()
 }
 
 //LAGA
-void ConsoleUI::sortItComputer()
-{
-    vector<Computer> Computers;
-    Computers = _Cservice.serviceToVector(Computers);
-    int choice = 0;
-    cout << "How would you like to sort?" << endl;
-    cout << "\t1. By name  \n";
-    cout << "\t2. By type \n";
-    cout << "\t3. By buildyear \n";
-    cout << endl;
-    cout << "Your choice: ";
-    cin >> choice;
-
-    switch(choice)
-    {
-    case 1: //Sorts alphabetically
-        cout << "\t1. From A-Z  \n";
-        cout << "\t2. From Z-A \n";
-        cout << "Your choice: ";
-        int choiceAlpha;
-        cin >> choiceAlpha;
-        switch(choiceAlpha)
-        {
-        case 2:
-            Computers = _Cservice.reAlpha();
-            break;
-        default: // if 1 or something other
-            Computers = _Cservice.Alpha();
-        }
-        break;
-    case 2: //Sorts by which gender first and alphabetically
-        cout << "\t1. From A-Z  \n";
-        cout << "\t2. From Z-A \n";
-        cout << "Your choice(default): ";
-        int choiceGender;
-        cin >> choiceGender;
-        switch(choiceGender)
-        {
-        case 2:
-            Computers = _Cservice.Alpha();
-            Computers = _Cservice.reType();
-            break;
-        default: // if 1 or something other
-            Computers = _Cservice.Alpha();
-            Computers = _Cservice.type();
-        }
-        break;
-    case 3:
-        cout << "\t1. From highest to lowest.  \n";
-        cout << "\t2. From lowest to highest. \n";
-        cout << "Your choice: ";
-        int choiceBirthYear;
-        cin >> choiceBirthYear;
-        switch(choiceBirthYear)
-        {
-        case 2:
-            Computers = _Cservice.Alpha();
-            Computers = _Cservice.buildYear();
-            break;
-        default: // if 1 or something other
-            Computers = _Cservice.Alpha();
-            Computers = _Cservice.reBuildYear();
-            break;
-        }
-        break;
-    }
-    system(CLEAR);
-    displayComputerVector(Computers);
-}
-
 void ConsoleUI::searchComputer()
 {
     {
@@ -1083,7 +1084,6 @@ void ConsoleUI::about()
          << "\t         Margret Kristin Waage Bjornssdottir\n"
          << "\t         Soley Asgeirsdottir\n";
 }
-
 void ConsoleUI::teamLogo()
 {
     //add team logo

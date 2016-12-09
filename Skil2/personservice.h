@@ -20,9 +20,6 @@ public:
     vector<Person> death();
     vector<Person> reDeath();
 
-    void linkPersonToComputer(int PersonID, int ComputerID);
-    vector<Person> JoinPersonWithComputer();
-
     vector<Person> serviceToVector(vector<Person> person);
     void serviceToFile(string name, char gender, int birthYear, int deathYear);
     void serviceToFile(vector<Person> person);
@@ -39,6 +36,10 @@ public:
     void editBirthYear(string trueName, int birthYear);
     void editDeathYear(string trueName, int deathYear);
     void deletePerson(string trueName);
+
+    void linkPersonToComputer(int PersonID, int ComputerID);//inserti into
+    vector<Computer> getComputersConnectedToPerson(string personName);
+
 
 private:
     DataAccess _access;
