@@ -25,6 +25,7 @@ public:
     void displayComputerVector( vector<Computer> printIt, int x = 0 );
     void personLinkedToComputer();
     void computerLinkedToPerson();
+    void deleteConnection();
     void about();
     void printDabs();
     void teamLogo();

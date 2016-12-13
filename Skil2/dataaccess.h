@@ -49,6 +49,9 @@ public:
     void deleteComputer(string trueName);
 
     void linkPersonToComputer(int Person_ID, int Computer_ID);
+    void deleteConnection(int PersonID, int ComputerID);
+    void deleteConnectionComputer(int ComputerID);
+    void deleteConnectionPerson(int PersonID);
 
     vector<Person> getPersonsConnectedToComputers(int id);
     vector<Computer> getComputersConnectedToPersons(int id);

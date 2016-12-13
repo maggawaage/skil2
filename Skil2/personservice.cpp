@@ -142,10 +142,30 @@ void PersonService::deletePerson(string trueName)
     _access.deletePerson(trueName);
 }
 
-
-void PersonService::linkPersonToComputer(int PersonID, int ComputerID) //insert into
+void PersonService::deleteConnection(string pName, string cName)
 {
-    _access.linkPersonToComputer(PersonID, ComputerID);
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.deleteConnection(pID, cID);
+}
+
+void PersonService::deleteConnectionComputer(string name)
+{
+    int id =_access.getComputerIdByName(name);
+    _access.deleteConnectionComputer(id);
+}
+
+void PersonService::deleteConnectionPerson(string name)
+{
+    int id =_access.getPersonIdByName(name);
+    _access.deleteConnectionPerson(id);
+}
+
+void PersonService::linkPersonToComputer(string pName, string cName)
+{
+    int pID =_access.getPersonIdByName(pName);
+    int cID =_access.getComputerIdByName(cName);
+    _access.linkPersonToComputer(pID, cID);
 }
 
 vector<Computer> PersonService::getComputersConnectedToPerson(string personName)

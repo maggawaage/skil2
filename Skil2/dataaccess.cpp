@@ -266,6 +266,30 @@ void DataAccess::linkPersonToComputer(int PersonID, int ComputerID)
     query.exec();
 }
 
+void DataAccess::deleteConnection(int PersonID, int ComputerID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Person_ID=:PID AND Computer_ID=:CID");
+    query.bindValue(":PID", PersonID);
+    query.bindValue(":CID", ComputerID);
+    query.exec();
+}
+
+void DataAccess::deleteConnectionComputer(int ComputerID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Computer_ID=:CID");
+    query.bindValue(":CID", ComputerID);
+    query.exec();
+}
+
+void DataAccess::deleteConnectionPerson(int PersonID)
+{
+    QSqlQuery query = QSqlQuery(_runningDB);
+    query.prepare("DELETE FROM CID_PID_LINK  WHERE Person_ID=:PID");
+    query.bindValue(":PID", PersonID);
+    query.exec();
+}
 
 vector<Person> DataAccess::getPersonsConnectedToComputers(int id)
 {

@@ -126,11 +126,11 @@ void ConsoleUI::run()
                                 writeComputer();
                                 break;
                             case 3:
-                                writeConnection();//Add
+                                writeConnection();
                                 break;
                             default:
                                 system(CLEAR);
-                                cout<<"\tInvalid entry!\a"<<endl;
+                                cout<<"\tInvalid entry!\007"<<endl;
                             }
                             break;
                         case 2:
@@ -158,7 +158,7 @@ void ConsoleUI::run()
                                 break;
                             default:
                                 system(CLEAR);
-                                cout<<"\tInvalid entry!\a"<<endl;
+                                cout<<"\tInvalid entry!\007"<<endl;
                             }
                             break;
                         case 3:
@@ -178,13 +178,14 @@ void ConsoleUI::run()
                                 break;
                             default:
                                 system(CLEAR);
-                                cout<<"\tInvalid entry!\a"<<endl;
+                                cout<<"\tInvalid entry!\007"<<endl;
                             }
                             break;
                         case 4:
                             cout << "Do you want to delete from a list of persons or a computers?\n";
                             cout << "\t1. Delete person  \n";
                             cout << "\t2. Delete computer \n";
+                            cout << "\t3. Delete connection \n";
                             cout << "Your choice: ";
                             int deleteFromFileChoice;
                             cin >> deleteFromFileChoice;
@@ -196,9 +197,12 @@ void ConsoleUI::run()
                             case 2:
                                 deleteFromFileComputer();
                                 break;
+                            case 3:
+                                deleteConnection();
+                                break;
                             default:
                                 system(CLEAR);
-                                cout<<"\tInvalid entry!\a"<<endl;
+                                cout<<"\tInvalid entry!\007"<<endl;
                             }
                             break;
                         case 5:
@@ -218,7 +222,7 @@ void ConsoleUI::run()
                                 break;
                             default:
                                 system(CLEAR);
-                                cout<<"\tInvalid entry!\a"<<endl;
+                                cout<<"\tInvalid entry!\007"<<endl;
                             }
                             break;
                         case 6:
@@ -243,14 +247,14 @@ void ConsoleUI::run()
                             break;
                         default:
                             system(CLEAR);
-                            cout<<"\tInvalid entry!\a"<<endl;
+                            cout<<"\tInvalid entry!\007"<<endl;
                         }
                     }
                     while(true);
                 }
                 else
                 {
-                    cout << "\nWrong username or password\a\n";
+                    cout << "\nWrong username or password\007\n";
                     count++;
                }
             }
@@ -312,7 +316,7 @@ void ConsoleUI::writePerson()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name is already on the list.\a\n";
+        cout << "\nError: This name is already on the list.\007\n";
     }
 }
 void ConsoleUI::writeComputer()
@@ -351,7 +355,7 @@ void ConsoleUI::writeComputer()
     else
     {
         system(CLEAR);
-        cout << "\nError: This name is already on the list.\a\n";
+        cout << "\nError: This name is already on the list.\007\n";
     }
 }
 
@@ -370,20 +374,26 @@ void ConsoleUI::writeConnection()
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding id: ";
     }
+    string pName = Persons.at(pID-1).getName();
 
     vector<Computer> Computers;
     Computers = _Cservice.serviceToVector(Computers);
     int cID;
     displayComputerVector(Computers, 1);
 
-    cout << "\nEnter the ID of the computer you would like to connect:";
+    cout << "\nEnter the ID of the computer you would like to connect: ";
     while(!(cin >> cID) | (cID < 1) | (cID > (int)Computers.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding numbers: ";
     }
-    _service.linkPersonToComputer(pID, cID);
+    string cName = Computers.at(cID-1).getName();
+    cout << cName;
+
+    _service.linkPersonToComputer(pName, cName);
+    system(CLEAR);
+    cout << "\nAdded connection to list\n";
 
 }
 
@@ -704,7 +714,7 @@ void ConsoleUI::searchPerson()
         if (SearchPersons.size() == 0)
         {
             system(CLEAR);
-            cout << "No computer matches this search \a\n";
+            cout << "No computer matches this search \007\n";
         }
         else
         {
@@ -822,7 +832,7 @@ void ConsoleUI::searchComputer()
             if (SearchComputers.size() == 0)
             {
                 system(CLEAR);
-                cout << "No Computer matches this search \a\n";
+                cout << "No Computer matches this search \007\n";
             }
             else
             {
@@ -857,9 +867,9 @@ void ConsoleUI::deleteFromFilePerson()
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding numbers: ";
     }
-
     trueName = Persons.at(id-1).getName();
-    _service.deletePerson(trueName);
+    _service.deleteConnectionPerson(trueName);
+   _service.deletePerson(trueName);
     Persons.clear();
     Persons = _service.serviceToVector(Persons);
     system(CLEAR);
@@ -874,20 +884,22 @@ void ConsoleUI::deleteFromFileComputer()
     displayComputerVector(Computers, 1);
 
     cout << "\nEnter the ID of the Computer you want to delete: ";
-    while(!(cin >> id) | (id < 1) | (id > (int)Computers.size()))
+    while(!(cin >> id) | (id < 1) | (id > Computers.size()))
     {
         cin.clear();
         cin.ignore(10000,'\n');
         cout << "Enter only corresponding numbers: ";
     }
-
     trueName = Computers.at(id-1).getName();
+    _service.deleteConnectionComputer(trueName);
     _Cservice.deleteComputer(trueName);
     Computers.clear();
     Computers = _Cservice.serviceToVector(Computers);
     system(CLEAR);
+    cout << trueName;
     displayComputerVector(Computers);
 }
+
 void ConsoleUI::editPerson()
 {
     string newName;
@@ -970,7 +982,7 @@ void ConsoleUI::editPerson()
         else
         {
             system(CLEAR);
-            cout << "You cannot die before you are born. Nothing was edited\a\n";
+            cout << "You cannot die before you are born. Nothing was edited\007\n";
         }
         break;
     case 4:
@@ -1058,7 +1070,7 @@ void ConsoleUI::editComputer()
         else
         {
             system(CLEAR);
-            cout << "This name has already been added. Nothing was edited\a\n";
+            cout << "This name has already been added. Nothing was edited\007\n";
         }
         break;
     case 2:
@@ -1091,11 +1103,48 @@ void ConsoleUI::editComputer()
         break;
     default:
     {
-        cout<<"\tInvalid entry!\a"<< endl;
+        cout<<"\tInvalid entry!\007"<< endl;
     }
 
     }
 }
+
+void ConsoleUI::deleteConnection()////////////////////////////////////////////////////////////////////////
+{
+    vector<Person> Persons;
+    Persons = _service.serviceToVector(Persons);
+    int pID;
+    //Couts vector with ID
+    displayVector( Persons, 1 );
+
+    cout << "\nEnter the ID of the Person you would like to deconnect: ";
+    while(!(cin >> pID) | (pID < 1) | (pID > (int)Persons.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding id: ";
+    }
+
+    string pName=Persons.at(pID-1).getName();
+    vector<Computer> Computers;
+    Computers = _service.getComputersConnectedToPerson(pName);
+    int cID;
+    displayComputerVector(Computers, 1);
+
+    cout << "\nEnter the ID of the computer you would like to deconnect: ";
+    while(!(cin >> cID) | (cID < 1) | (cID > (int)Computers.size()))
+    {
+        cin.clear();
+        cin.ignore(10000,'\n');
+        cout << "Enter only corresponding numbers: ";
+    }
+     string cName=Computers.at(cID-1).getName();
+    _service.deleteConnection(pName, cName);
+    cout << pName<< "  " << cName;
+    system(CLEAR);
+    cout << "\nDeleted connection from list\n";
+}
+
 void ConsoleUI::displayVector( vector<Person> printIt, int x )
 {
     cout << "\n";

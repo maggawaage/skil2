@@ -34,8 +34,11 @@ public:
     void editBirthYear(string trueName, int birthYear);
     void editDeathYear(string trueName, int deathYear);
     void deletePerson(string trueName);
+    void deleteConnection(string pName, string cName);
+    void deleteConnectionPerson(string name);
+    void deleteConnectionComputer(string name);
 
-    void linkPersonToComputer(int PersonID, int ComputerID);
+    void linkPersonToComputer(string pName, string cName);
     vector<Computer> getComputersConnectedToPerson(string personName);
 
 
